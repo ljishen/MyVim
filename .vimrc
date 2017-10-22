@@ -16,6 +16,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'google/vim-colorscheme-primary'
+Plugin 'mbbill/undotree'
+Plugin 'scrooloose/nerdtree'
+Plugin 'terryma/vim-expand-region'
+Plugin 'elzr/vim-json'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,12 +42,82 @@ filetype plugin indent on    " required
 " vim-airline
 " =================================================================
 
+" Always display the airline statusline
+set laststatus=2
+
 " It will automatically populate the `g:airline_symbols` dictionary with the powerline symbols
 " https://github.com/vim-airline/vim-airline#integrating-with-powerline-fonts
 let g:airline_powerline_fonts = 1
 
 " Automatically displays all buffers when there's only one tab open.
 let g:airline#extensions#tabline#enabled = 1
+
+" Enable modified detection
+let g:airline_detect_modified = 1
+
+" Enable paste detection
+let g:airline_detect_paste = 1
+
+" Enable spell detection
+let g:airline_detect_spell = 1
+
+" display spelling language when spell detection is enabled
+" (if enough space is available)
+let g:airline_detect_spelllang = 1
+
+
+" =================================================================
+" Indent Guides
+" =================================================================
+
+" Have indent guides enabled by default
+let g:indent_guides_enable_on_vim_startup = 1
+
+
+" =================================================================
+" undotree
+" =================================================================
+
+nnoremap <F5> :UndotreeToggle<cr>
+
+" Enable the persistent undo
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
+
+" =================================================================
+" NERDTree
+" =================================================================
+
+" Open a NERDTree automatically when vim starts up
+autocmd vimenter * NERDTree
+
+" Open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Open NERDTree with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
+
+" =================================================================
+" vim-expand-region
+" =================================================================
+
+" Press + to expand the visual selection and _ to shrink it.
+
+
+" =================================================================
+" vim-colorscheme-primary
+" =================================================================
+
+set background=light
+"#colorscheme primary
 
 
 " =================================================================
@@ -73,20 +148,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" Always display the status line
-set laststatus=2
-
 " No backup made
 set nobackup
 set nowritebackup
 
 " Enables a menu at the bottom of the window
 set wildmenu
-
-
-" =================================================================
-" vim-colorscheme-primary
-" =================================================================
-
-set background=light
-"#colorscheme primary
