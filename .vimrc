@@ -14,11 +14,15 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'google/vim-colorscheme-primary'
+Plugin 'ryanoasis/vim-devicons'
+
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
+
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-expand-region'
+
 Plugin 'elzr/vim-json'
 Plugin 'ekalinin/Dockerfile.vim'
 
@@ -82,8 +86,8 @@ nnoremap <F5> :UndotreeToggle<cr>
 
 " Enable the persistent undo
 if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
+  set undodir=~/.undodir/
+  set undofile
 endif
 
 
@@ -115,22 +119,16 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 " =================================================================
-" vim-colorscheme-primary
-" =================================================================
-
-set background=light
-"#colorscheme primary
-
-
-" =================================================================
 " Miscellaneous
 " =================================================================
 
-set t_Co=256
+" Encoding
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 
 " Switch on syntax highlighting
-syntax enable
+syntax on
 
 " Precede each line with its line number
 set number
@@ -145,10 +143,14 @@ set incsearch
 " registers and other commands that have not been typed.
 set lazyredraw
 
-" Indentation without hard tabs
-set expandtab
+" Fix backspace indent
+set backspace=indent,eol,start
+
+" Indentation with spaces
+set tabstop=4
+set softtabstop=0
 set shiftwidth=4
-set softtabstop=4
+set expandtab
 
 " No backup made
 set nobackup
@@ -156,3 +158,15 @@ set nowritebackup
 
 " Enables a menu at the bottom of the window
 set wildmenu
+
+" Need to set before the colorscheme
+set t_Co=256
+
+set fileformats=unix,dos,mac
+
+" =================================================================
+" vim-colorscheme-primary
+" =================================================================
+
+set background=light
+"#colorscheme primary
