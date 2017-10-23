@@ -236,6 +236,10 @@ let g:syntastic_check_on_wq = 0
 " Aggregates errors found by all checkers in a single list
 let g:syntastic_aggregate_errors = 1
 
+" Add shortcut mappings for errors navigation
+nmap <leader>n :lnext<CR>
+nmap <leader>p :lprevious<CR>
+
 " Classpath to use
 let g:syntastic_java_checkstyle_classpath = $CHECKSTYLE_JAR
 
@@ -246,6 +250,8 @@ let g:syntastic_java_checkstyle_conf_file = $CHECKSTYLE_CONFIG
 " Tell syntastic which checker you want to run for .java file
 let g:syntastic_java_checkers = ['checkstyle']
 
-" Add shortcut mappings for errors navigation
-nmap <leader>n :lnext<CR>
-nmap <leader>p :lprevious<CR>
+" Include directories to be passed to the linter
+let g:syntastic_c_include_dirs = ["includes", "headers"]
+
+" Tell syntastic which checker you want to run for .c file
+let g:syntastic_c_checkers = ['checkpatch', 'gcc']
