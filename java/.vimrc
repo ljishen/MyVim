@@ -135,6 +135,21 @@ let g:airline_detect_spell = 1
 " (if enough space is available)
 let g:airline_detect_spelllang = 1
 
+" Enable syntastic integration
+let g:airline#extensions#syntastic#enabled = 1
+
+" Syntastic error_symbol
+let airline#extensions#syntastic#error_symbol = 'E:'
+
+" Syntastic statusline error format (see |syntastic_stl_format|)
+let airline#extensions#syntastic#stl_format_err = '%E{[%e(#%fe)]}'
+
+" Syntastic warning
+let airline#extensions#syntastic#warning_symbol = 'W:'
+
+" Syntastic statusline warning format (see |syntastic_stl_format|)
+let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
+
 
 " =================================================================
 " vim-colorscheme-primary
@@ -213,11 +228,20 @@ let g:indent_guides_guide_size = 1
 " Syntastic
 " =================================================================
 
-set statusline+=%#warningmsg#
-"#set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Aggregates errors found by all checkers in a single list
+let g:syntastic_aggregate_errors = 1
+
+" Classpath to use
+let g:syntastic_java_checkstyle_classpath = $CHECKSTYLE_JAR
+
+" Path to the configuration file for the "-c" option (cf.
+" http://checkstyle.sourceforge.net/cmdline.html#Command_line_usage)
+let g:syntastic_java_checkstyle_conf_file = $CHECKSTYLE_CONFIG
+
+" Tell syntastic which checker you want to run for .java file
+let g:syntastic_java_checkers = ['checkstyle']
