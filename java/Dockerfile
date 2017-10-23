@@ -1,6 +1,6 @@
 # VERSION 1.0
 
-FROM alpine:3.6
+FROM openjdk:alpine
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 RUN apk --no-cache add \

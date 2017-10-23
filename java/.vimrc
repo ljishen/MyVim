@@ -137,16 +137,11 @@ let g:airline_detect_spelllang = 1
 
 
 " =================================================================
-" Indent Guides
+" vim-colorscheme-primary
 " =================================================================
 
-" Have indent guides enabled by default
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Start showing guides from indent level 2
-let g:indent_guides_start_level = 2
-
-let g:indent_guides_guide_size = 1
+set background=light
+"#colorscheme primary
 
 
 " =================================================================
@@ -195,6 +190,19 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
 " =================================================================
+" Indent Guides
+" =================================================================
+
+" Have indent guides enabled by default
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Start showing guides from indent level 2
+let g:indent_guides_start_level = 2
+
+let g:indent_guides_guide_size = 1
+
+
+" =================================================================
 " vim-expand-region
 " =================================================================
 
@@ -202,8 +210,14 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
 " =================================================================
-" vim-colorscheme-primary
+" Syntastic
 " =================================================================
 
-set background=light
-"#colorscheme primary
+set statusline+=%#warningmsg#
+"#set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
