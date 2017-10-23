@@ -19,6 +19,7 @@ Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-expand-region'
@@ -82,7 +83,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 " undotree
 " =================================================================
 
-nnoremap <F5> :UndotreeToggle<cr>
+" Open undotree with Ctrl+h
+map <C-h> :UndotreeToggle<cr>
 
 " Enable the persistent undo
 if has("persistent_undo")
@@ -109,6 +111,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Open NERDTree with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
+
+
+" =================================================================
+" ctrlp.vim
+" =================================================================
+
+" Open CtrlP with Ctrl+f
+let g:ctrlp_map = '<c-f>'
+
+" Ignore version control folders
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
 " =================================================================
