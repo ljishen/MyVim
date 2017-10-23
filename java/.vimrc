@@ -164,7 +164,7 @@ set background=light
 " =================================================================
 
 " Open undotree with Ctrl+h
-map <C-h> :UndotreeToggle<cr>
+map <C-h> :UndotreeToggle<CR>
 
 " Enable the persistent undo
 if has("persistent_undo")
@@ -245,3 +245,7 @@ let g:syntastic_java_checkstyle_conf_file = $CHECKSTYLE_CONFIG
 
 " Tell syntastic which checker you want to run for .java file
 let g:syntastic_java_checkers = ['checkstyle']
+
+" Add shortcut mappings for errors navigation
+nmap <leader>n :lnext<CR>
+nmap <leader>p :lprevious<CR>
