@@ -3,11 +3,16 @@
 FROM openjdk:jre-alpine
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
+# perl for Checkpatch (syntax checking of c)
+# gcc for syntax checking of c
+# g++ for syntax checking of c++
+# cppcheck for syntax checking of c++
 RUN apk --no-cache add \
     vim \
     git \
     perl \
-    gcc
+    g++ \
+    cppcheck
 
 WORKDIR /root
 
