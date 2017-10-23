@@ -23,8 +23,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-expand-region'
+Plugin 'Raimondi/delimitMate'
 
 Plugin 'vim-syntastic/syntastic'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'elzr/vim-json'
 Plugin 'ekalinin/Dockerfile.vim'
 
