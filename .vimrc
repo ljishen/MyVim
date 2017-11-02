@@ -20,6 +20,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-expand-region'
