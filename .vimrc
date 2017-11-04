@@ -31,6 +31,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'elzr/vim-json'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -262,3 +263,11 @@ let g:syntastic_c_checkers = ['checkpatch', 'gcc']
 
 " Tell syntastic which checker you want to run for .cpp file
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
+
+
+" =================================================================
+" Vim Better Whitespace
+" =================================================================
+
+" Strip all trailing whitespace everytime you save the file for all file types
+autocmd BufEnter * EnableStripWhitespaceOnSave
