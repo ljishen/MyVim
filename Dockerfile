@@ -12,6 +12,7 @@ RUN apk --no-cache add \
     git \
     perl \
     g++ \
+    py-pip \
     cppcheck
 
 WORKDIR /root
@@ -25,16 +26,8 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.v
 ENV TERM xterm-256color
 
 
-# Install Node.js
-ENV NODEJS_VERSION v8.9.1
-ADD https://nodejs.org/dist/${NODEJS_VERSION}/node-${NODEJS_VERSION}-linux-x64.tar.xz /root
-RUN mkdir /nodejs && \
-    tar xf /root/node-${NODEJS_VERSION}-linux-x64.tar.xz --strip-components=1 -C /nodejs && \
-    rm /root/node-${NODEJS_VERSION}-linux-x64.tar.xz
-ENV PATH /nodejs/bin:$PATH
-
-## Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
-RUN npm install -g js-beautify
+# Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
+RUN pip install jsbeautifier
 
 
 ENV SYNTASTIC_HOME /root/.syntastic
