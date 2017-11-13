@@ -3,7 +3,7 @@
 FROM openjdk:jre-alpine
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
-# perl for Checkpatch (syntax checking of c)
+# perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
 # cppcheck for syntax checking of c++
@@ -25,6 +25,18 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.v
 ENV TERM xterm-256color
 
 
+# Install Node.js
+ENV NODEJS_VERSION v8.9.1
+ADD https://nodejs.org/dist/${NODEJS_VERSION}/node-${NODEJS_VERSION}-linux-x64.tar.xz /root
+RUN mkdir /nodejs && \
+    tar xf /root/node-${NODEJS_VERSION}-linux-x64.tar.xz --strip-components=1 -C /nodejs && \
+    rm /root/node-${NODEJS_VERSION}-linux-x64.tar.xz
+ENV PATH /nodejs/bin:$PATH
+
+## Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
+RUN npm install -g js-beautify
+
+
 ENV SYNTASTIC_HOME /root/.syntastic
 RUN mkdir $SYNTASTIC_HOME
 
@@ -38,11 +50,11 @@ ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/reso
 ENV CHECKSTYLE_JAR ${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar
 ENV CHECKSTYLE_CONFIG ${CHECKSTYLE_HOME}/google_checks.xml
 
-
 # Install Checkpatch
 ENV CHECKPATCH_HOME ${SYNTASTIC_HOME}/checkpatch
 ADD https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl ${CHECKPATCH_HOME}/
 RUN chmod +x ${CHECKPATCH_HOME}/checkpatch.pl
 ENV PATH ${CHECKPATCH_HOME}:$PATH
+
 
 CMD ["vim"]

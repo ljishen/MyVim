@@ -16,22 +16,29 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'google/vim-colorscheme-primary'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'google/vim-searchindex'
 
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-commentary'
-
+Plugin 'google/vim-searchindex'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'terryma/vim-expand-region'
 Plugin 'Raimondi/delimitMate'
-
-Plugin 'vim-syntastic/syntastic'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'elzr/vim-json'
-Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'elzr/vim-json'
+
+" ======================================================================================
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
+" ======================================================================================
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,9 +56,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-" =================================================================
+" ======================================================================================
 " Basic Setup
-" =================================================================
+" ======================================================================================
 
 " Map leader to ,
 let mapleader=','
@@ -99,9 +106,9 @@ set t_Co=256
 set fileformats=unix,dos,mac
 
 
-" =================================================================
+" ======================================================================================
 " vim-airline
-" =================================================================
+" ======================================================================================
 
 " Always display the airline statusline
 set laststatus=2
@@ -156,17 +163,17 @@ let airline#extensions#syntastic#warning_symbol = 'W:'
 let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
 
 
-" =================================================================
+" ======================================================================================
 " vim-colorscheme-primary
-" =================================================================
+" ======================================================================================
 
 set background=light
 "#colorscheme primary
 
 
-" =================================================================
+" ======================================================================================
 " undotree
-" =================================================================
+" ======================================================================================
 
 " Open undotree with Ctrl+h
 map <C-h> :UndotreeToggle<CR>
@@ -178,9 +185,9 @@ if has("persistent_undo")
 endif
 
 
-" =================================================================
+" ======================================================================================
 " NERDTree
-" =================================================================
+" ======================================================================================
 
 " Open a NERDTree automatically when vim starts up
 " Automatically move the cursor to the file editing area >
@@ -198,9 +205,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>
 
 
-" =================================================================
+" ======================================================================================
 " ctrlp.vim
-" =================================================================
+" ======================================================================================
 
 " Open CtrlP with Ctrl+f
 let g:ctrlp_map = '<c-f>'
@@ -209,29 +216,9 @@ let g:ctrlp_map = '<c-f>'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 
-" =================================================================
-" Indent Guides
-" =================================================================
-
-" Have indent guides enabled by default
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Start showing guides from indent level 2
-let g:indent_guides_start_level = 2
-
-let g:indent_guides_guide_size = 1
-
-
-" =================================================================
-" vim-expand-region
-" =================================================================
-
-" Press + to expand the visual selection and _ to shrink it.
-
-
-" =================================================================
+" ======================================================================================
 " Syntastic
-" =================================================================
+" ======================================================================================
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -265,9 +252,53 @@ let g:syntastic_c_checkers = ['checkpatch', 'gcc']
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
 
 
-" =================================================================
+" ======================================================================================
+" Indent Guides
+" ======================================================================================
+
+" Have indent guides enabled by default
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Start showing guides from indent level 2
+let g:indent_guides_start_level = 2
+
+let g:indent_guides_guide_size = 1
+
+
+" ======================================================================================
+" vim-expand-region
+" ======================================================================================
+
+" Press + to expand the visual selection and _ to shrink it.
+
+
+" ======================================================================================
 " Vim Better Whitespace
-" =================================================================
+" ======================================================================================
 
 " Strip all trailing whitespace everytime you save the file for all file types
-autocmd BufEnter * EnableStripWhitespaceOnSave
+"#autocmd BufEnter * EnableStripWhitespaceOnSave
+
+
+" ======================================================================================
+" codefmt
+" ======================================================================================
+
+" Type :FormatCode <TAB> to list Formatters that apply to the current filetype.
+" To use a particular formatter, type :FormatCode FORMATTER-NAME.
+
+" the glaive#Install() should go after the "call vundle#end()"
+"#call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+"#Glaive codefmt plugin[mappings]
+
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+augroup END
