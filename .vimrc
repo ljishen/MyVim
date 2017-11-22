@@ -240,7 +240,7 @@ let g:syntastic_java_checkstyle_classpath = $CHECKSTYLE_JAR
 let g:syntastic_java_checkstyle_conf_file = $CHECKSTYLE_CONFIG
 
 " Tell syntastic which checker you want to run for .java file
-let g:syntastic_java_checkers = ['checkstyle']
+let g:syntastic_java_checkers = ['checkstyle', 'javac']
 
 " Include directories to be passed to the linter
 let g:syntastic_c_include_dirs = ["includes", "headers"]
