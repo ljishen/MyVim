@@ -251,7 +251,7 @@ let g:syntastic_java_checkers = ['checkstyle', 'javac']
 let g:syntastic_c_include_dirs = ["includes", "headers"]
 
 " Tell syntastic which checker you want to run for .c file
-let g:syntastic_c_checkers = ['checkpatch', 'gcc']
+let g:syntastic_c_checkers = ['checkpatch', 'cppcheck', 'gcc']
 
 " Tell syntastic which checker you want to run for .cpp file
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
@@ -296,6 +296,7 @@ let g:indent_guides_guide_size = 1
 "#call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
 "#Glaive codefmt plugin[mappings]
+"#Glaive codefmt google_java_executable=`"java -jar " . $GOOGLE_JAVA_FORMAT_JAR`
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
@@ -304,6 +305,7 @@ augroup autoformat_settings
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
   autocmd FileType html,css,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END

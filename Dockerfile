@@ -6,7 +6,7 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
-# cppcheck for syntax checking of c++
+# cppcheck for syntax checking of c and c++
 RUN apk --no-cache add \
     vim \
     git \
@@ -30,24 +30,27 @@ ENV TERM xterm-256color
 RUN pip install jsbeautifier
 
 
-ENV SYNTASTIC_HOME /root/.syntastic
+ENV SYNTASTIC_HOME /root/.vim/syntastic
 RUN mkdir $SYNTASTIC_HOME
 
 # Install Checkstyle (for Java)
-ENV CHECKSTYLE_VERSION 8.4
-ENV CHECKSTYLE_HOME ${SYNTASTIC_HOME}/checkstyle
+ENV CHECKSTYLE_VERSION=8.4 \
+    CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
 COPY checkstyle-${CHECKSTYLE_VERSION}-all.jar ${CHECKSTYLE_HOME}/
 ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml ${CHECKSTYLE_HOME}/
-
-## Create ENV variables for the use in .vimrc
-ENV CHECKSTYLE_JAR ${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar
-ENV CHECKSTYLE_CONFIG ${CHECKSTYLE_HOME}/google_checks.xml
+ENV CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
+    CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml
 
 # Install Checkpatch
-ENV CHECKPATCH_HOME ${SYNTASTIC_HOME}/checkpatch
+ENV CHECKPATCH_HOME=${SYNTASTIC_HOME}/checkpatch
 ADD https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl ${CHECKPATCH_HOME}/
 RUN chmod +x ${CHECKPATCH_HOME}/checkpatch.pl
-ENV PATH ${CHECKPATCH_HOME}:$PATH
+ENV PATH=${CHECKPATCH_HOME}:$PATH
 
+# Install google-java-format
+ENV GOOGLE_JAVA_FORMAT_VERSION=1.5 \
+    GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
+ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_HOME}/
+ENV GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar
 
 CMD ["vim"]
