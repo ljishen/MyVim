@@ -168,9 +168,12 @@ let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
 " ======================================================================================
 
 set background=light
-"#let g:solarized_termcolors=256
-"#colorscheme solarized
 
+" This line has to go before the `colorschem solarized` line
+" https://github.com/altercation/vim-colors-solarized#important-note-for-terminal-users
+let g:solarized_termcolors=256
+
+"#colorscheme solarized
 
 
 " ======================================================================================
