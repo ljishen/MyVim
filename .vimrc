@@ -14,7 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'google/vim-colorscheme-primary'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'mbbill/undotree'
@@ -164,11 +164,13 @@ let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
 
 
 " ======================================================================================
-" vim-colorscheme-primary
+" vim-colors-solarized
 " ======================================================================================
 
 set background=light
-"#colorscheme primary
+"#let g:solarized_termcolors=256
+"#colorscheme solarized
+
 
 
 " ======================================================================================
