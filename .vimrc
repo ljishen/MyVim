@@ -29,6 +29,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'elzr/vim-json'
+Plugin 'majutsushi/tagbar'
 
 " ======================================================================================
 " Add maktaba and codefmt to the runtimepath.
@@ -309,3 +310,10 @@ augroup autoformat_settings
   autocmd FileType python AutoFormatBuffer yapf
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
 augroup END
+
+
+" ======================================================================================
+" Tagbar
+" ======================================================================================
+
+nmap <F8> :TagbarToggle<CR>

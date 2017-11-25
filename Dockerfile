@@ -7,13 +7,15 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
 # cppcheck for syntax checking of c and c++
+# ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 RUN apk --no-cache add \
     vim \
     git \
     perl \
     g++ \
     py-pip \
-    cppcheck
+    cppcheck \
+    ctags
 
 WORKDIR /root
 
