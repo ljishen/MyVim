@@ -257,6 +257,9 @@ let g:syntastic_c_checkers = ['checkpatch', 'cppcheck', 'gcc']
 " Tell syntastic which checker you want to run for .cpp file
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
 
+" Tell syntastic which checker you want to run for .py file
+let g:syntastic_python_checkers = ['bandit', 'flake8', 'python']
+
 
 " ======================================================================================
 " Indent Guides

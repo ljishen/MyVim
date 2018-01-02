@@ -29,7 +29,10 @@ ENV TERM xterm-256color
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
-RUN pip install jsbeautifier
+# Install bandit and flake8 as the syntax checkers for python used in plugin vim-syntastic/syntastic
+RUN pip install jsbeautifier \
+                bandit \
+                flake8
 
 
 ENV SYNTASTIC_HOME /root/.vim/syntastic
