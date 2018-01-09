@@ -237,6 +237,7 @@ let g:syntastic_aggregate_errors = 1
 " Add shortcut mappings for errors navigation
 nmap <leader>n :lnext<CR>
 nmap <leader>p :lprevious<CR>
+nmap <F7> :SyntasticToggleMode<CR>
 
 " Classpath to use
 let g:syntastic_java_checkstyle_classpath = $CHECKSTYLE_JAR
