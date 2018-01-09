@@ -8,6 +8,7 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # g++ for syntax checking of c++
 # cppcheck for syntax checking of c and c++
 # ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
+# clang installs `/usr/bin/clang-format` which will be used in plugin google/vim-codefmt
 RUN apk --no-cache add \
     vim \
     git \
@@ -15,7 +16,8 @@ RUN apk --no-cache add \
     g++ \
     py-pip \
     cppcheck \
-    ctags
+    ctags \
+    clang
 
 WORKDIR /root
 
@@ -39,7 +41,7 @@ ENV SYNTASTIC_HOME /root/.vim/syntastic
 RUN mkdir $SYNTASTIC_HOME
 
 # Install Checkstyle (for Java)
-ENV CHECKSTYLE_VERSION=8.4 \
+ENV CHECKSTYLE_VERSION=8.7 \
     CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
 COPY checkstyle-${CHECKSTYLE_VERSION}-all.jar ${CHECKSTYLE_HOME}/
 ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml ${CHECKSTYLE_HOME}/
