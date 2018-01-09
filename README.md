@@ -1,5 +1,15 @@
 # my-vim
 
+A screenshot without comments.
+
+![screenshot](https://user-images.githubusercontent.com/468515/34702283-bd0b6b92-f4a1-11e7-8504-dea4fc04287e.png)
+
+
 ## Usage
 
-Choose and install any one of patched-fonts from [ryanoasis/nerd-fonts/patched-fonts/](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
+1. Choose and install any one of patched-fonts from [ryanoasis/nerd-fonts/patched-fonts/](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts)
+
+2. Run within docker container
+   ```bash
+   docker run --rm -ti ljishen/my-vim
+   ```
