@@ -67,4 +67,10 @@ ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
 ENV PATH=${HADOLINT_HOME}:$PATH
 
+# Install ShellCheck (for sh)
+ENV SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck
+RUN mkdir "$SHELLCHECK_HOME" && \
+    wget https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz -O - | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
+ENV PATH=${SHELLCHECK_HOME}:$PATH
+
 CMD ["vim"]

@@ -264,6 +264,9 @@ let g:syntastic_python_checkers = ['bandit', 'flake8', 'python']
 " Tell syntastic which checker you want to run for Dockerfile
 let g:syntastic_dockerfile_checkers = ['hadolint']
 
+" Tell syntastic which checker you wnat to run for sh
+let g:syntastic_sh_checkers = ['shellcheck']
+
 
 " ======================================================================================
 " Indent Guides
