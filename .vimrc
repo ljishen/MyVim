@@ -261,6 +261,9 @@ let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
 " Tell syntastic which checker you want to run for .py file
 let g:syntastic_python_checkers = ['bandit', 'flake8', 'python']
 
+" Tell syntastic which checker you want to run for Dockerfile
+let g:syntastic_dockerfile_checkers = ['hadolint']
+
 
 " ======================================================================================
 " Indent Guides
