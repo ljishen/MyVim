@@ -13,3 +13,8 @@ A screenshot without comments.
    ```bash
    docker run --rm -ti ljishen/my-vim
    ```
+
+3. You can also install to local host
+   ```bash
+   source scripts/debian_install.sh
+   ```

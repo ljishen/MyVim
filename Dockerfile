@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     cmake
 
+
 WORKDIR /root
 
 # Install Vundle and Plugins
@@ -51,7 +52,7 @@ RUN pip install jsbeautifier \
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
 
 
-# Install checkers for plugin vim-syntastic/syntastic
+# Install various checkers for plugin vim-syntastic/syntastic
 
 ENV SYNTASTIC_HOME /root/.vim/syntastic
 RUN mkdir "$SYNTASTIC_HOME"
@@ -73,8 +74,8 @@ ENV PATH=${CHECKPATCH_HOME}:$PATH
 # Install google-java-format
 ENV GOOGLE_JAVA_FORMAT_VERSION=1.5 \
     GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
-ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_HOME}/
 ENV GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar
+ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_HOME}/
 
 # Install hadolint (for Dockerfile)
 ENV HADOLINT_VERSION=1.3.0 \
