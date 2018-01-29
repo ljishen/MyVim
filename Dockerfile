@@ -1,23 +1,33 @@
-# VERSION 1.0
+# VERSION 1.1
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk-slim-stretch
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
+# python-pip, python-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier)
 # cppcheck for syntax checking of c and c++
-# ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
-# clang installs `/usr/bin/clang-format` which will be used in plugin google/vim-codefmt
-RUN apk --no-cache add \
-    vim \
+# exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
+# clang-format is used by plugin google/vim-codefmt
+
+# python-dev, cmake and build-essential are used for compiling (YouCompleteMe)YCM with semantic support in the following command:
+#   /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    vim-nox \
     git \
     perl \
     g++ \
-    py-pip \
+    python-pip \
+    python-setuptools \
+    python-wheel \
     cppcheck \
-    ctags \
-    clang
+    exuberant-ctags \
+    clang-format \
+    python-dev \
+    build-essential \
+    cmake
 
 WORKDIR /root
 
@@ -36,6 +46,12 @@ RUN pip install jsbeautifier \
                 bandit \
                 flake8
 
+
+# Compiling YouCompleteMe(YCM) with semantic support for C-family languages
+RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
+
+
+# Install checkers for plugin vim-syntastic/syntastic
 
 ENV SYNTASTIC_HOME /root/.vim/syntastic
 RUN mkdir "$SYNTASTIC_HOME"
@@ -70,7 +86,13 @@ ENV PATH=${HADOLINT_HOME}:$PATH
 # Install ShellCheck (for sh)
 ENV SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck
 RUN mkdir "$SHELLCHECK_HOME" && \
-    wget https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz -O - | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
+    curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
 ENV PATH=${SHELLCHECK_HOME}:$PATH
+
+
+# Clean Up
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 CMD ["vim"]

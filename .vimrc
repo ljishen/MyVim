@@ -30,6 +30,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'elzr/vim-json'
 Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
 
 " ======================================================================================
 " Add maktaba and codefmt to the runtimepath.
@@ -253,7 +254,7 @@ let g:syntastic_java_checkers = ['checkstyle', 'javac']
 let g:syntastic_c_include_dirs = ["includes", "headers"]
 
 " Tell syntastic which checker you want to run for .c file
-let g:syntastic_c_checkers = ['checkpatch', 'cppcheck', 'gcc']
+let g:syntastic_c_checkers = ['checkpatch', 'cppcheck', 'gcc', 'make']
 
 " Tell syntastic which checker you want to run for .cpp file
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
