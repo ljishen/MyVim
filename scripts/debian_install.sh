@@ -2,9 +2,9 @@
 
 set -eu
 
-ID=$( grep -oP '^ID=\K\w+' /etc/os-release 2> /dev/null )
-os=$( echo "$ID" | tr '[:upper:]' '[:lower:]' )
-if [ "$os" != "ubuntu" ] && [ "$os" != "debian" ]; then
+ID_LIKE=$( grep -oP '^ID_LIKE=\K\w+' /etc/os-release 2> /dev/null )
+family=$( echo "$ID_LIKE" | tr '[:upper:]' '[:lower:]' )
+if [ "$family" != "debian" ]; then
     echo "Operation aborted because the current OS is not a Debian-based distribution."
     exit 0
 fi
@@ -40,7 +40,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python-dev \
     build-essential \
     cmake \
-    $( if [ "$install_jdk" = true ]; then echo "openjdk-8-jdk"; fi )
+    $( if [ "$install_jdk" = true ]; then echo "openjdk-8-jdk openjdk-8-jre-headless"; fi )
 
 sudo apt-get clean
 
