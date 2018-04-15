@@ -1,8 +1,8 @@
 # my-vim
 
-A screenshot without comments.
+## Screenshot
 
-![screenshot](https://user-images.githubusercontent.com/468515/34702283-bd0b6b92-f4a1-11e7-8504-dea4fc04287e.png)
+![screenshot](https://user-images.githubusercontent.com/468515/38783573-9f4e3d42-40b8-11e8-9338-867a8d42483a.png)
 
 
 ## Usage
