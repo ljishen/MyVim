@@ -93,7 +93,7 @@ export_envs "CHECKPATCH_HOME=${SYNTASTIC_HOME}/checkpatch"
 mkdir -p "${CHECKPATCH_HOME}" && \
     curl -fsSL https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl -o "${CHECKPATCH_HOME}"/checkpatch.pl
 chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
-export_envs "PATH=${CHECKPATCH_HOME}:$PATH"
+PATH="${CHECKPATCH_HOME}:$PATH"
 
 # Install google-java-format
 export_envs "GOOGLE_JAVA_FORMAT_VERSION=1.5 \
@@ -108,12 +108,15 @@ export_envs "HADOLINT_VERSION=1.6.2 \
 mkdir -p "${HADOLINT_HOME}" && \
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
 chmod +x "${HADOLINT_HOME}"/hadolint
-export_envs "PATH=${HADOLINT_HOME}:$PATH"
+PATH="${HADOLINT_HOME}:$PATH"
 
 # Install ShellCheck (for sh)
 export_envs "SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck"
 mkdir -p "${SHELLCHECK_HOME}" && \
     curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
-export_envs "PATH=${SHELLCHECK_HOME}:$PATH"
+PATH="${SHELLCHECK_HOME}:$PATH"
+
+# Finally export the PATH after all the updates on this env
+export_envs "PATH=$PATH"
 
 printf "\\nInstallation completed successfully.\\n"
