@@ -56,9 +56,17 @@ rm -rf "${HOME}"/.vim/bundle/Vundle.vim && \
     vim +PluginInstall +qall && \
     sed -i 's/"#//g' "$HOME"/.vimrc
 
+
+# Remove the old exported envs first
+sed -i '/ljishen\/my-vim/,/#### END ####/d' "$HOME"/.profile
+
+printf "\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/my-vim) ####\\n\\n" >> "$HOME"/.profile
+
 function export_envs {
-    export $1
-    echo "export $1" >> "$HOME"/.profile
+    for env in $1; do
+        export "${env?}"
+        printf "export %s\\n" "$env" >> "$HOME"/.profile
+    done
 }
 
 export_envs "TERM=xterm-256color"
@@ -83,7 +91,7 @@ mkdir -p "$SYNTASTIC_HOME"
 # Install Checkstyle (for Java)
 export_envs "CHECKSTYLE_VERSION=8.9 \
              CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle"
-mkdir -p "${CHECKSTYLE_HOME}" && cp "${SCRIPT_DIR}"/../checkstyle-${CHECKSTYLE_VERSION}-all.jar "${CHECKSTYLE_HOME}"/
+mkdir -p "${CHECKSTYLE_HOME}" && cp "${SCRIPT_DIR}"/../checkstyle-"${CHECKSTYLE_VERSION}"-all.jar "${CHECKSTYLE_HOME}"/
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
 export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
              CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
@@ -100,13 +108,13 @@ export_envs "GOOGLE_JAVA_FORMAT_VERSION=1.5 \
              GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format"
 export_envs "GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar"
 mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" && \
-    curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
+    curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
 
 # Install hadolint (for Dockerfile)
 export_envs "HADOLINT_VERSION=1.6.2 \
              HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint"
 mkdir -p "${HADOLINT_HOME}" && \
-    curl -fsSL https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
+    curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
 chmod +x "${HADOLINT_HOME}"/hadolint
 PATH="${HADOLINT_HOME}:$PATH"
 
@@ -118,5 +126,8 @@ PATH="${SHELLCHECK_HOME}:$PATH"
 
 # Finally export the PATH after all the updates on this env
 export_envs "PATH=$PATH"
+
+printf "\\n#### END ####\\n" >> "$HOME"/.profile
+
 
 printf "\\nInstallation completed successfully.\\n"
