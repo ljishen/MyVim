@@ -6,7 +6,7 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
-# python-pip, python-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier)
+# python-pip, python3-pip, python-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     perl \
     g++ \
     python-pip \
+    python3-pip \
     python-setuptools \
     python-wheel \
     cppcheck \
@@ -47,6 +48,9 @@ RUN pip install jsbeautifier \
                 bandit \
                 flake8
 
+# We want flake not only works for Python 2.7 but also Python 3.5.
+# See the installation requirement http://flake8.pycqa.org/en/latest/#installation
+RUN pip3 install flake8
 
 # Compiling YouCompleteMe(YCM) with semantic support for C-family languages
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
