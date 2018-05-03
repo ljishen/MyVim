@@ -18,7 +18,7 @@ fi
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
-# python-pip, python3-pip, python-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier)
+# python-pip, python3-pip, python-setuptools, python3-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier, flake8)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
@@ -34,6 +34,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python-pip \
     python3-pip \
     python-setuptools \
+    python3-setuptools \
     python-wheel \
     cppcheck \
     exuberant-ctags \
