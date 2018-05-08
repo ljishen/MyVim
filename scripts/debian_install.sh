@@ -94,7 +94,7 @@ export_envs "SYNTASTIC_HOME=$HOME/.vim/syntastic"
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-export_envs "CHECKSTYLE_VERSION=8.9 \
+export_envs "CHECKSTYLE_VERSION=8.10 \
              CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle"
 mkdir -p "${CHECKSTYLE_HOME}" && cp "${SCRIPT_DIR}"/../checkstyle-"${CHECKSTYLE_VERSION}"-all.jar "${CHECKSTYLE_HOME}"/
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
@@ -116,7 +116,7 @@ mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" && \
     curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
 
 # Install hadolint (for Dockerfile)
-export_envs "HADOLINT_VERSION=1.6.2 \
+export_envs "HADOLINT_VERSION=1.6.5 \
              HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint"
 mkdir -p "${HADOLINT_HOME}" && \
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
@@ -126,7 +126,7 @@ PATH="${HADOLINT_HOME}:$PATH"
 # Install ShellCheck (for sh)
 export_envs "SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck"
 mkdir -p "${SHELLCHECK_HOME}" && \
-    curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
+    curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
 PATH="${SHELLCHECK_HOME}:$PATH"
 
 # Finally export the PATH after all the updates on this env
