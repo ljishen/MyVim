@@ -6,13 +6,15 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
-# python-pip, python3-pip, python-setuptools, python3-setuptools, python-wheel are used for installing/building python packages (e.g. jsbeautifier, flake8)
+# python-pip, python3-pip, python-setuptools, python3-setuptools, python-wheel
+#     are used for installing/building python packages (e.g. jsbeautifier, flake8)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
-
-# python-dev, cmake and build-essential are used for compiling (YouCompleteMe)YCM with semantic support in the following command:
-#   /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
+# python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
+#     with semantic support in the following command:
+#     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
+# pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     vim-nox \
@@ -29,7 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     clang-format \
     python-dev \
     build-essential \
-    cmake
+    cmake \
+    pylint
 
 
 WORKDIR /root
@@ -44,14 +47,19 @@ ENV TERM xterm-256color
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
-# Install bandit and flake8 as the syntax checkers for python used in plugin vim-syntastic/syntastic
+# Install bandit, flake8, pycodestyle and pydocstyle as the syntax checkers
+#     for python used in plugin vim-syntastic/syntastic
 RUN pip install jsbeautifier \
                 bandit \
-                flake8
+                flake8 \
+                pycodestyle \
+                pydocstyle
 
 # We want flake not only works for Python 2.7 but also Python 3.5.
-# See the installation requirement http://flake8.pycqa.org/en/latest/#installation
-RUN pip3 install flake8
+#     See the installation requirement http://flake8.pycqa.org/en/latest/#installation
+# Install mypy as the syntax checkers for python used in plugin vim-syntastic/syntastic
+RUN pip3 install flake8 \
+                 mypy
 
 # Compiling YouCompleteMe(YCM) with semantic support for C-family languages
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
