@@ -137,6 +137,13 @@ mkdir -p "${SHELLCHECK_HOME}" && \
     curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
 PATH="${SHELLCHECK_HOME}:$PATH"
 
+# Because mypy is installed to the "$HOME"/.local/bin,
+#     we need to add it to the PATH if it doesn't already exist
+home_local_bin="$HOME"/.local/bin
+if [[ :$PATH: != *:"$home_local_bin":* ]] ; then
+    PATH="${home_local_bin}:$PATH"
+fi
+
 # Finally export the PATH after all the updates on this env
 export_envs "PATH=$PATH"
 
