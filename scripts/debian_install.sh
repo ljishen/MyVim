@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -eu -o pipefail
 
 ID_LIKE=$( grep -oP '^ID_LIKE=\K\w+' /etc/os-release 2> /dev/null )
 family=$( echo "$ID_LIKE" | tr '[:upper:]' '[:lower:]' )
