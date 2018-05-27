@@ -26,7 +26,6 @@ fi
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
-# pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     curl \
     vim-nox \
@@ -44,7 +43,6 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python-dev \
     build-essential \
     cmake \
-    pylint \
     "$( if [ "$install_jdk" = true ]; then echo "openjdk-8-jdk openjdk-8-jre-headless"; fi )"
 
 sudo apt-get clean
@@ -88,9 +86,11 @@ pip install jsbeautifier \
 
 # We want flake not only works for Python 2.7 but also Python 3.5.
 #     See the installation requirement http://flake8.pycqa.org/en/latest/#installation
-# Install mypy as the syntax checkers for python used in plugin vim-syntastic/syntastic
+# Install mypy as the syntax checkers for Python used in plugin vim-syntastic/syntastic
+# pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 pip3 install flake8 \
-             mypy
+             mypy \
+             pylint
 
 # Compiling YouCompleteMe(YCM) with semantic support for C-family languages
 "$HOME"/.vim/bundle/YouCompleteMe/install.py --clang-completer
