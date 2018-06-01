@@ -61,7 +61,11 @@ rm -rf "${HOME}"/.vim/bundle/Vundle.vim && \
 # Remove the old exported envs first
 sed -i '/ljishen\/my-vim/,/#### END ####/d' "$HOME"/.profile
 
-printf "\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/my-vim) ####\\n\\n" >> "$HOME"/.profile
+# Delete all trailing blank lines at end of file
+#   http://sed.sourceforge.net/sed1line.txt
+sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$HOME"/.profile
+
+printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/my-vim) ####\\n\\n" >> "$HOME"/.profile
 
 function export_envs {
     for env in $1; do
@@ -141,7 +145,7 @@ fi
 # Finally export the PATH after all the updates on this env
 export_envs "PATH=$PATH"
 
-printf "\\n#### END ####\\n" >> "$HOME"/.profile
+printf "\\n#### END ####" >> "$HOME"/.profile
 
 
 printf "\\nInstallation completed successfully.\\n"
