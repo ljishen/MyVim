@@ -18,12 +18,12 @@ fi
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
 # g++ for syntax checking of c++
-# python-pip, python3-pip, python-setuptools, python3-setuptools, python-wheel
-#     are used for installing/building python packages (e.g. jsbeautifier, flake8)
+# python3-pip, python3-setuptools and python3-wheel
+#    are used for installing/building python packages (e.g. jsbeautifier, flake8)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
-# python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
+# cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
@@ -32,11 +32,9 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     git \
     perl \
     g++ \
-    python-pip \
     python3-pip \
-    python-setuptools \
     python3-setuptools \
-    python-wheel \
+    python3-wheel \
     cppcheck \
     exuberant-ctags \
     clang-format \
@@ -77,23 +75,19 @@ export_envs "TERM=xterm-256color"
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
 # Install bandit, flake8, pycodestyle and pydocstyle as the syntax checkers
-#     for python used in plugin vim-syntastic/syntastic
-pip install jsbeautifier \
-            bandit \
-            flake8 \
-            pycodestyle \
-            pydocstyle
-
-# We want flake not only works for Python 2.7 but also Python 3.5.
-#     See the installation requirement http://flake8.pycqa.org/en/latest/#installation
-# Install mypy as the syntax checkers for Python used in plugin vim-syntastic/syntastic
+#     for Python3 used in plugin vim-syntastic/syntastic
+# Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
-pip3 install flake8 \
-             mypy \
-             pylint
+pip3 install jsbeautifier \
+                 flake8 \
+                 mypy \
+                 bandit \
+                 pylint \
+                 pycodestyle \
+                 pydocstyle
 
-# Compiling YouCompleteMe(YCM) with semantic support for C-family languages
-"$HOME"/.vim/bundle/YouCompleteMe/install.py --clang-completer
+# Compiling YouCompleteMe(YCM) with semantic support for Java and C-family languages
+"$HOME"/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
 
 
 # Install various checkers for plugin vim-syntastic/syntastic
@@ -102,7 +96,7 @@ export_envs "SYNTASTIC_HOME=$HOME/.vim/syntastic"
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-export_envs "CHECKSTYLE_VERSION=8.10 \
+export_envs "CHECKSTYLE_VERSION=8.10.1 \
              CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle"
 mkdir -p "${CHECKSTYLE_HOME}" && cp "${SCRIPT_DIR}"/../checkstyle-"${CHECKSTYLE_VERSION}"-all.jar "${CHECKSTYLE_HOME}"/
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
