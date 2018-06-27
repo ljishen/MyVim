@@ -79,13 +79,13 @@ RUN chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
 ENV PATH=${CHECKPATCH_HOME}:$PATH
 
 # Install google-java-format
-ENV GOOGLE_JAVA_FORMAT_VERSION=1.5 \
+ENV GOOGLE_JAVA_FORMAT_VERSION=1.6 \
     GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
 ENV GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar
 ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_HOME}/
 
 # Install hadolint (for Dockerfile)
-ENV HADOLINT_VERSION=1.6.5 \
+ENV HADOLINT_VERSION=1.8.0 \
     HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint
 ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 ${HADOLINT_HOME}/hadolint
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
