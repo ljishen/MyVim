@@ -9,10 +9,10 @@ if [ "$family" != "debian" ]; then
     exit 0
 fi
 
-install_jdk=false
+jdk_pkgs=( )
 # javac is used for syntastic checker for .java file
 if hash javac 2>/dev/null; then
-    install_jdk=true
+    jdk_pkgs=( openjdk-8-jdk openjdk-8-jre-headless )
 fi
 
 # perl for Checkpatch (syntax checking for C)
@@ -41,7 +41,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python-dev \
     build-essential \
     cmake \
-    "$( if [ "$install_jdk" = true ]; then echo "openjdk-8-jdk openjdk-8-jre-headless"; fi )"
+    "${jdk_pkgs[@]}"
 
 sudo apt-get clean
 
