@@ -27,23 +27,23 @@ fi
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
-    curl \
-    vim-nox \
-    git \
-    perl \
-    g++ \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel \
-    cppcheck \
-    exuberant-ctags \
-    clang-format \
-    python-dev \
-    build-essential \
-    cmake \
-    ${jdk_pkgs[@]+"${jdk_pkgs[@]}"}
-
-sudo apt-get clean
+        curl \
+        vim-nox \
+        git \
+        perl \
+        g++ \
+        python3-pip \
+        python3-setuptools \
+        python3-wheel \
+        cppcheck \
+        exuberant-ctags \
+        clang-format \
+        python-dev \
+        build-essential \
+        cmake \
+        ${jdk_pkgs[@]+"${jdk_pkgs[@]}"} \
+    && sudo apt-get clean \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 
 # Get the full directory name of the current script

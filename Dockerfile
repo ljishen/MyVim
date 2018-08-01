@@ -1,7 +1,7 @@
 # VERSION 1.2
 
 FROM openjdk:8-jdk-slim-stretch
-MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
+LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
@@ -15,20 +15,22 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 #     with semantic support in the following command:
 #     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    vim-nox \
-    git \
-    perl \
-    g++ \
-    python3-pip \
-    python3-setuptools \
-    python3-wheel \
-    cppcheck \
-    exuberant-ctags \
-    clang-format \
-    python-dev \
-    build-essential \
-    cmake
+        curl \
+        vim-nox \
+        git \
+        perl \
+        g++ \
+        python3-pip \
+        python3-setuptools \
+        python3-wheel \
+        cppcheck \
+        exuberant-ctags \
+        clang-format \
+        python-dev \
+        build-essential \
+        cmake \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 
 WORKDIR /root
@@ -99,8 +101,7 @@ ENV PATH=${SHELLCHECK_HOME}:$PATH
 
 
 # Clean Up
-RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN rm -rf /tmp/* /var/tmp/*
 
 
 CMD ["vim"]
