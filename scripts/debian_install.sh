@@ -11,7 +11,7 @@ fi
 
 jdk_pkgs=( )
 # javac is used for syntastic checker for .java file
-if hash javac 2>/dev/null; then
+if ! hash javac 2>/dev/null; then
     jdk_pkgs=( openjdk-8-jdk openjdk-8-jre-headless )
 fi
 
@@ -41,7 +41,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     python-dev \
     build-essential \
     cmake \
-    "${jdk_pkgs[@]}"
+    ${jdk_pkgs[@]+"${jdk_pkgs[@]}"}
 
 sudo apt-get clean
 
