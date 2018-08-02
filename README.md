@@ -26,6 +26,7 @@
 - [[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)]
 - [[vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)] Solarized Colorscheme for Vim.
 - [[vim-devicons](https://github.com/ryanoasis/vim-devicons)] Adds file type glyphs/icons to popular Vim plugins.
+- [[vim-illuminate](https://github.com/RRethy/vim-illuminate)] Vim plugin for selectively illuminating other uses of current word under the cursor.
 - [[undotree](https://github.com/mbbill/undotree)] The ultimate undo history visualizer for VIM.
 - [[nerdtree](https://github.com/scrooloose/nerdtree)] A tree explorer plugin for vim.
 - [[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)] Full path fuzzy file, buffer, mru, tag, ... finder for Vim.

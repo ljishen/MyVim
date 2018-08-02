@@ -16,6 +16,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'RRethy/vim-illuminate'
 
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
