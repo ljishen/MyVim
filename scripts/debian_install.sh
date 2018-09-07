@@ -26,6 +26,8 @@ fi
 # cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
+
+## shellcheck for syntax checking of sh
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
         curl \
         vim-nox \
@@ -41,6 +43,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
         python-dev \
         build-essential \
         cmake \
+        shellcheck \
         ${jdk_pkgs[@]+"${jdk_pkgs[@]}"} \
     && sudo apt-get clean \
     && sudo rm -rf /var/lib/apt/lists/*
@@ -102,7 +105,8 @@ mkdir -p "$SYNTASTIC_HOME"
 # Install Checkstyle (for Java)
 export_envs "CHECKSTYLE_VERSION=8.12 \
              CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle"
-mkdir -p "${CHECKSTYLE_HOME}" && cp "${SCRIPT_DIR}"/../checkstyle-"${CHECKSTYLE_VERSION}"-all.jar "${CHECKSTYLE_HOME}"/
+mkdir -p "${CHECKSTYLE_HOME}" && \
+    curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
 export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
              CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
@@ -128,12 +132,6 @@ mkdir -p "${HADOLINT_HOME}" && \
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
 chmod +x "${HADOLINT_HOME}"/hadolint
 PATH="${HADOLINT_HOME}:$PATH"
-
-# Install ShellCheck (for sh)
-export_envs "SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck"
-mkdir -p "${SHELLCHECK_HOME}" && \
-    curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
-PATH="${SHELLCHECK_HOME}:$PATH"
 
 # Because mypy is installed to the "$HOME"/.local/bin,
 #     we need to add it to the PATH if it doesn't already exist

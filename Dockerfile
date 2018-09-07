@@ -14,6 +14,8 @@ LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
+
+## shellcheck for syntax checking of sh
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         vim-nox \
@@ -29,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         build-essential \
         cmake \
+        shellcheck \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -69,7 +72,7 @@ RUN mkdir "$SYNTASTIC_HOME"
 # Install Checkstyle (for Java)
 ENV CHECKSTYLE_VERSION=8.12 \
     CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
-COPY checkstyle-${CHECKSTYLE_VERSION}-all.jar ${CHECKSTYLE_HOME}/
+ADD https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar ${CHECKSTYLE_HOME}/
 ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml ${CHECKSTYLE_HOME}/
 ENV CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
     CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml
@@ -92,12 +95,6 @@ ENV HADOLINT_VERSION=1.12.0 \
 ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 ${HADOLINT_HOME}/hadolint
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
 ENV PATH=${HADOLINT_HOME}:$PATH
-
-# Install ShellCheck (for sh)
-ENV SHELLCHECK_HOME=${SYNTASTIC_HOME}/shellcheck
-RUN mkdir "$SHELLCHECK_HOME" && \
-    curl -fsSL https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz | tar -xJ -C "${SHELLCHECK_HOME}" --strip 1
-ENV PATH=${SHELLCHECK_HOME}:$PATH
 
 
 # Clean Up
