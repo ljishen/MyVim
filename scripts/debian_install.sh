@@ -126,12 +126,14 @@ mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" && \
     curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
 
 # Install hadolint (for Dockerfile)
-export_envs "HADOLINT_VERSION=1.12.0 \
-             HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint"
-mkdir -p "${HADOLINT_HOME}" && \
-    curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
-chmod +x "${HADOLINT_HOME}"/hadolint
-PATH="${HADOLINT_HOME}:$PATH"
+if [[ $(arch) = x86_64 ]]; then
+    export_envs "HADOLINT_VERSION=1.12.0 \
+                 HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint"
+    mkdir -p "${HADOLINT_HOME}" && \
+        curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
+    chmod +x "${HADOLINT_HOME}"/hadolint
+    PATH="${HADOLINT_HOME}:$PATH"
+fi
 
 # Because mypy is installed to the "$HOME"/.local/bin,
 #     we need to add it to the PATH if it doesn't already exist
