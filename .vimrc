@@ -270,6 +270,9 @@ let g:syntastic_dockerfile_checkers = ['hadolint']
 " Tell syntastic which checker you wnat to run for sh
 let g:syntastic_sh_checkers = ['shellcheck']
 
+" Tell syntastic which checker you wnat to run for yaml
+let g:syntastic_yaml_checkers = ['yamllint']
+
 
 " ======================================================================================
 " Indent Guides
