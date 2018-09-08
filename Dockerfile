@@ -11,6 +11,7 @@ LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
+# python3-dev is required to build typed-ast, which is required by jsbeautifier
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
@@ -29,6 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         exuberant-ctags \
         clang-format \
         python-dev \
+        python3-dev \
         build-essential \
         cmake \
         shellcheck \
@@ -58,7 +60,8 @@ RUN pip3 install jsbeautifier \
                  bandit \
                  pylint \
                  pycodestyle \
-                 pydocstyle
+                 pydocstyle \
+                 yamllint
 
 # Compiling YouCompleteMe(YCM) with semantic support for Jave and C-family languages
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer

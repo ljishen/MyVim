@@ -24,7 +24,7 @@ fi
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
 # clang-format is used by plugin google/vim-codefmt
 # python3-dev is required to build typed-ast, which is required by jsbeautifier
-# cmake and build-essential are used for compiling YouCompleteMe(YCM)
+# python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
 
