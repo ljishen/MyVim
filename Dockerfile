@@ -15,6 +15,7 @@ LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
+# libffi-dev is required to build ansible-lint
 
 ## shellcheck for syntax checking of sh
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -33,6 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         build-essential \
         cmake \
+        libffi-dev \
         shellcheck \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -54,6 +56,7 @@ ENV TERM xterm-256color
 #     for Python3 used in plugin vim-syntastic/syntastic
 # Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
+# ansible-lint is a best-practices linter for Ansible playbooks used by plugin vim-syntastic/syntastic
 RUN pip3 install jsbeautifier \
                  flake8 \
                  mypy \
@@ -61,7 +64,7 @@ RUN pip3 install jsbeautifier \
                  pylint \
                  pycodestyle \
                  pydocstyle \
-                 yamllint
+                 ansible-lint
 
 # Compiling YouCompleteMe(YCM) with semantic support for Jave and C-family languages
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
