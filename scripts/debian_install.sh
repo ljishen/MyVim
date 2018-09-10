@@ -27,7 +27,7 @@ fi
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
-# libffi-dev is required to build ansible-lint
+# libffi-dev and libssl-dev is required to build ansible-lint
 
 ## shellcheck for syntax checking of sh
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
@@ -47,6 +47,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
         build-essential \
         cmake \
         libffi-dev \
+        libssl-dev \
         shellcheck \
         ${jdk_pkgs[@]+"${jdk_pkgs[@]}"} \
     && sudo apt-get clean \
