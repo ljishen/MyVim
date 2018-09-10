@@ -46,7 +46,7 @@ WORKDIR /root
 # Install Vundle and Plugins
 COPY .vimrc .
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
-    && vim +PluginInstall +qall \
+    && vim +PluginClean! +PluginInstall! +qall \
     && sed -i 's/"#//g' .vimrc
 
 ENV TERM xterm-256color

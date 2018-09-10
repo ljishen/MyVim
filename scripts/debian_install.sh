@@ -62,7 +62,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cp "${SCRIPT_DIR}"/../.vimrc "$HOME"
 rm -rf "${HOME}"/.vim/bundle/Vundle.vim && \
     git clone https://github.com/VundleVim/Vundle.vim.git "${HOME}"/.vim/bundle/Vundle.vim && \
-    vim +PluginInstall +qall && \
+    vim +PluginClean! +PluginInstall! +qall && \
     sed -i 's/"#//g' "$HOME"/.vimrc
 
 
