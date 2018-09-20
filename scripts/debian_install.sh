@@ -82,7 +82,7 @@ function export_envs {
     done
 }
 
-export_envs "TERM=xterm-256color"
+export_envs "TERM=screen-256color"
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
