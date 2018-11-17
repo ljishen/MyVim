@@ -49,7 +49,7 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.v
     && vim +PluginClean! +PluginInstall! +qall \
     && sed -i 's/"#//g' .vimrc
 
-ENV TERM screen-256color
+ENV TERM xterm-256color
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt

@@ -82,7 +82,7 @@ function export_envs {
     done
 }
 
-export_envs "TERM=screen-256color"
+export_envs "TERM=xterm-256color"
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
@@ -154,5 +154,10 @@ export_envs "PATH=$PATH"
 
 printf "\\n#### END ####" >> "$HOME"/.profile
 
+# Config .tmux.conf for Vim running inside tmux
+tmux_conf_file="$HOME"/.tmux.conf
+if [ ! -f  "$tmux_conf_file" ] || ! grep -q "tmux-256color" "$tmux_conf_file"; then
+    echo 'set -g default-terminal "tmux-256color"' >> "$tmux_conf_file"
+fi
 
 printf "\\nInstallation completed successfully.\\n"
