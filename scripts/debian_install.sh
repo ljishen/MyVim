@@ -84,7 +84,7 @@ function export_envs {
 
 # Check if TERM is already set so that it is not overwritten if tmux/screen
 # has set a value for it.
-update_term="[ -z \"\$TERM\" ] && export TERM=xterm-256color"
+update_term="if [ -z \"\$TERM\" ]; then export TERM=xterm-256color; fi"
 eval "$update_term"
 printf "%s\\n" "$update_term" >> "$HOME"/.profile
 
