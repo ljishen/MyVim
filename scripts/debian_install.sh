@@ -82,7 +82,11 @@ function export_envs {
     done
 }
 
-export_envs "TERM=xterm-256color"
+# Check if TERM is already set so that it is not overwritten if tmux/screen
+# has set a value for it.
+update_term="[ -z \"\$TERM\" ] && export TERM=xterm-256color"
+eval "$update_term"
+printf "%s\\n" "$update_term" >> "$HOME"/.profile
 
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
