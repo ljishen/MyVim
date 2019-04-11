@@ -20,6 +20,7 @@ Plugin 'RRethy/vim-illuminate'
 
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-commentary'
@@ -198,7 +199,7 @@ set undofile
 " Open a NERDTree automatically when vim starts up
 " Automatically move the cursor to the file editing area >
 " https://stackoverflow.com/questions/24808932/vim-open-nerdtree-and-move-the-cursor-to-the-file-editing-area
-autocmd VimEnter * NERDTree | wincmd p
+"autocmd VimEnter * NERDTree | wincmd p
 
 " Open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1

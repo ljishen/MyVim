@@ -29,6 +29,7 @@
 - [[vim-illuminate](https://github.com/RRethy/vim-illuminate)] Vim plugin for selectively illuminating other uses of current word under the cursor.
 - [[undotree](https://github.com/mbbill/undotree)] The ultimate undo history visualizer for VIM.
 - [[nerdtree](https://github.com/scrooloose/nerdtree)] A tree explorer plugin for vim.
+- [[nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)] A plugin of NERDTree showing git status flags.
 - [[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)] Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 - [[syntastic](https://github.com/vim-syntastic/syntastic)] Syntax checking hacks for vim.
 - [[vim-commentary](https://github.com/tpope/vim-commentary)] Comment stuff out.
