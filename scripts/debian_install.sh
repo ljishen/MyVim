@@ -65,6 +65,9 @@ rm -rf "${HOME}"/.vim/bundle/Vundle.vim && \
     vim +PluginClean! +PluginInstall! +qall && \
     sed -i 's/"#//g' "$HOME"/.vimrc
 
+# make folder to persistent undo used by plugin mbbill/undotree
+mkdir -p "$HOME"/.undodir
+
 
 # Remove the old exported envs first
 sed -i '/ljishen\/my-vim/,/#### END ####/d' "$HOME"/.profile

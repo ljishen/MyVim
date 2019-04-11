@@ -49,6 +49,11 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.v
     && vim +PluginClean! +PluginInstall! +qall \
     && sed -i 's/"#//g' .vimrc
 
+# Make folder to persistent undo used by plugin mbbill/undotree.
+# For this to work you need to mount a host dir into "$HOME"/.undodir in the container.
+# https://docs.docker.com/engine/reference/run/#volume-shared-filesystems
+RUN mkdir -p "$HOME"/.undodir
+
 ENV TERM screen-256color
 
 

@@ -187,10 +187,8 @@ let g:solarized_termcolors=256
 map <C-h> :UndotreeToggle<CR>
 
 " Enable the persistent undo
-if has("persistent_undo")
-  set undodir=~/.undodir/
-  set undofile
-endif
+set undodir=~/.undodir/
+set undofile
 
 
 " ======================================================================================
