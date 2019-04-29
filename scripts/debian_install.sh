@@ -117,12 +117,12 @@ pip3 install \
 
 # Install various checkers for plugin vim-syntastic/syntastic
 
-export_envs "SYNTASTIC_HOME=$HOME/.vim/syntastic"
+SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-export_envs "CHECKSTYLE_VERSION=8.12 \
-             CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle"
+CHECKSTYLE_VERSION=8.12
+CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" && \
     curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
@@ -130,23 +130,23 @@ export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-
              CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
 
 # Install Checkpatch
-export_envs "CHECKPATCH_HOME=${SYNTASTIC_HOME}/checkpatch"
+CHECKPATCH_HOME="${SYNTASTIC_HOME}"/checkpatch
 mkdir -p "${CHECKPATCH_HOME}" && \
     curl -fsSL https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl -o "${CHECKPATCH_HOME}"/checkpatch.pl
 chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
 PATH="${CHECKPATCH_HOME}:$PATH"
 
 # Install google-java-format
-export_envs "GOOGLE_JAVA_FORMAT_VERSION=1.6 \
-             GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format"
+GOOGLE_JAVA_FORMAT_VERSION=1.6
+GOOGLE_JAVA_FORMAT_HOME="${SYNTASTIC_HOME}"/google-java-format
 export_envs "GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar"
 mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" && \
     curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
 
 # Install hadolint (for Dockerfile)
 if [[ $(arch) = x86_64 ]]; then
-    export_envs "HADOLINT_VERSION=1.12.0 \
-                 HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint"
+    HADOLINT_VERSION=1.12.0
+    HADOLINT_HOME="${SYNTASTIC_HOME}"/hadolint
     mkdir -p "${HADOLINT_HOME}" && \
         curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
     chmod +x "${HADOLINT_HOME}"/hadolint
@@ -160,7 +160,7 @@ if [[ :$PATH: != *:"$home_local_bin":* ]] ; then
     PATH="${home_local_bin}:$PATH"
 fi
 
-# Finally export the PATH after all the updates on this env
+# Finally export the PATH with all the updates on this env
 export_envs "PATH=$PATH"
 
 printf "\\n#### END ####" >> "$HOME"/.profile

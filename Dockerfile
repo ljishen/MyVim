@@ -82,32 +82,32 @@ RUN /root/.vim/bundle/YouCompleteMe/install.py \
 
 # Install various checkers for plugin vim-syntastic/syntastic
 
-ENV SYNTASTIC_HOME /root/.vim/syntastic
+ARG SYNTASTIC_HOME=/root/.vim/syntastic
 RUN mkdir "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-ENV CHECKSTYLE_VERSION=8.12 \
-    CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
+ARG CHECKSTYLE_VERSION=8.12
+ARG CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
 ADD https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar ${CHECKSTYLE_HOME}/
 ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml ${CHECKSTYLE_HOME}/
 ENV CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
     CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml
 
 # Install Checkpatch
-ENV CHECKPATCH_HOME=${SYNTASTIC_HOME}/checkpatch
+ARG CHECKPATCH_HOME=${SYNTASTIC_HOME}/checkpatch
 ADD https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl ${CHECKPATCH_HOME}/
 RUN chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
 ENV PATH=${CHECKPATCH_HOME}:$PATH
 
 # Install google-java-format
-ENV GOOGLE_JAVA_FORMAT_VERSION=1.6 \
-    GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
+ARG GOOGLE_JAVA_FORMAT_VERSION=1.6
+ARG GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
 ENV GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar
 ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_HOME}/
 
 # Install hadolint (for Dockerfile)
-ENV HADOLINT_VERSION=1.12.0 \
-    HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint
+ARG HADOLINT_VERSION=1.12.0
+ARG HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint
 ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 ${HADOLINT_HOME}/hadolint
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
 ENV PATH=${HADOLINT_HOME}:$PATH
