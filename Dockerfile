@@ -45,6 +45,7 @@ WORKDIR /root
 
 # Install Vundle and Plugins
 COPY .vimrc .
+# hadolint ignore=DL3001
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
     && vim +PluginClean! +PluginInstall! +qall \
     && sed -i 's/"#//g' .vimrc
