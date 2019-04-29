@@ -20,6 +20,7 @@ LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 ## shellcheck for syntax checking of sh
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
+        tar \
         vim-nox \
         git \
         perl \
@@ -64,7 +65,7 @@ ENV TERM screen-256color
 # Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 # ansible-lint is a best-practices linter for Ansible playbooks used by plugin vim-syntastic/syntastic
-RUN pip3 install \
+RUN pip3 install --upgrade \
         jsbeautifier \
         flake8 \
         mypy \
@@ -84,7 +85,7 @@ RUN /root/.vim/bundle/YouCompleteMe/install.py \
 # Install various checkers for plugin vim-syntastic/syntastic
 
 ARG SYNTASTIC_HOME=/root/.vim/syntastic
-RUN mkdir "$SYNTASTIC_HOME"
+RUN mkdir "${SYNTASTIC_HOME}"
 
 # Install Checkstyle (for Java)
 ARG CHECKSTYLE_VERSION=8.20
@@ -113,6 +114,25 @@ ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
 ENV PATH=${HADOLINT_HOME}:$PATH
 
+# Install Bear to support C-family semantic completion used by YouCompleteMe
+ARG BEAR_VERSION=2.3.13
+ARG BEAR_SRC=${SYNTASTIC_HOME}/Bear-${BEAR_VERSION}
+ARG BEAR_HOME=${SYNTASTIC_HOME}/bear
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+# See how to do an out of source build
+#   https://stackoverflow.com/a/20611964
+#   https://stackoverflow.com/a/24435795
+RUN curl -fsSL https://codeload.github.com/rizsotto/Bear/tar.gz/"${BEAR_VERSION}" | tar -xz -C "${SYNTASTIC_HOME}" \
+    && cmake -B"${BEAR_SRC}" -H"${BEAR_SRC}" \
+    && make -C "${BEAR_SRC}" all \
+    && make -C "${BEAR_SRC}" package \
+    && mkdir "${BEAR_HOME}" \
+    && "${BEAR_SRC}"/bear-"${BEAR_VERSION}"-Linux.sh --prefix="${BEAR_HOME}" --exclude-subdir \
+    && rm -rf "${BEAR_SRC}"
+
+ENV PATH=${BEAR_HOME}/usr/local/bin:$PATH
 
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*

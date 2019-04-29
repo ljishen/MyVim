@@ -32,6 +32,7 @@ fi
 ## shellcheck for syntax checking of sh
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
         curl \
+        tar \
         vim-nox \
         git \
         perl \
@@ -98,7 +99,7 @@ printf "%s\\n" "$update_term" >> "$HOME"/.profile
 # Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 # ansible-lint is a best-practices linter for Ansible playbooks used by plugin vim-syntastic/syntastic
-pip3 install \
+pip3 install --upgrade \
     jsbeautifier \
     flake8 \
     mypy \
@@ -159,6 +160,25 @@ home_local_bin="$HOME"/.local/bin
 if [[ :$PATH: != *:"$home_local_bin":* ]] ; then
     PATH="${home_local_bin}:$PATH"
 fi
+
+# Install Bear to support C-family semantic completion used by YouCompleteMe
+BEAR_VERSION=2.3.13
+curl -fsSL https://codeload.github.com/rizsotto/Bear/tar.gz/"${BEAR_VERSION}" | tar -xz -C "${SYNTASTIC_HOME}"
+BEAR_SRC="${SYNTASTIC_HOME}"/Bear-"${BEAR_VERSION}"
+
+# See how to do an out of source build
+#   https://stackoverflow.com/a/20611964
+#   https://stackoverflow.com/a/24435795
+cmake -B"${BEAR_SRC}" -H"${BEAR_SRC}"
+make -C "${BEAR_SRC}" all
+make -C "${BEAR_SRC}" package
+
+BEAR_HOME="${SYNTASTIC_HOME}"/bear
+rm -rf "${BEAR_HOME}" && mkdir "${BEAR_HOME}"
+"${BEAR_SRC}"/bear-"${BEAR_VERSION}"-Linux.sh --prefix="${BEAR_HOME}" --exclude-subdir
+PATH="${BEAR_HOME}/usr/local/bin:$PATH"
+
+rm -rf "${BEAR_SRC}"
 
 # Finally export the PATH with all the updates on this env
 export_envs "PATH=$PATH"
