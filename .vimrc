@@ -332,3 +332,16 @@ augroup END
 " ======================================================================================
 
 nmap <F8> :TagbarToggle<CR>
+
+
+" ======================================================================================
+" YouCompleteMe
+" ======================================================================================
+
+" By default "YouCompleteMe" disables syntastic's checkers for the "c", "cpp", "objc",
+" and "objcpp" filetypes, in order to allow its own checkers to run.
+" Set this options to 0 to turns off YCM's diagnostic display features.
+" See
+"   https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic.txt
+"   https://github.com/Valloric/YouCompleteMe#the-gycm_show_diagnostics_ui-option
+let g:ycm_show_diagnostics_ui = 0
