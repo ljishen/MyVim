@@ -264,6 +264,7 @@ let g:syntastic_python_checkers = ['bandit', 'flake8', 'python', 'pylint',
                                  \ 'pycodestyle', 'pydocstyle', 'mypy']
 
 " Tell syntastic which checker you want to run for Dockerfile
+let g:syntastic_filetype_map = { "Dockerfile": "dockerfile" }
 let g:syntastic_dockerfile_checkers = ['hadolint']
 
 " Tell syntastic which checker you wnat to run for sh
