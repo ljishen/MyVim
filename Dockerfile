@@ -63,17 +63,21 @@ ENV TERM screen-256color
 # Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 # ansible-lint is a best-practices linter for Ansible playbooks used by plugin vim-syntastic/syntastic
-RUN pip3 install jsbeautifier \
-                 flake8 \
-                 mypy \
-                 bandit \
-                 pylint \
-                 pycodestyle \
-                 pydocstyle \
-                 ansible-lint
+RUN pip3 install \
+        jsbeautifier \
+        flake8 \
+        mypy \
+        bandit \
+        pylint \
+        pycodestyle \
+        pydocstyle \
+        ansible-lint
 
-# Compiling YouCompleteMe(YCM) with semantic support for Jave and C-family languages
-RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer --java-completer
+# Compiling YouCompleteMe(YCM) with semantic support for Jave and C-family languages (through libclang and clangd)
+RUN /root/.vim/bundle/YouCompleteMe/install.py \
+        --clang-completer \
+        --clangd-completer \
+        --java-completer
 
 
 # Install various checkers for plugin vim-syntastic/syntastic
