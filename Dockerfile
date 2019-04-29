@@ -117,7 +117,6 @@ ENV PATH=${HADOLINT_HOME}:$PATH
 # Install Bear to support C-family semantic completion used by YouCompleteMe
 ARG BEAR_VERSION=2.3.13
 ARG BEAR_SRC=${SYNTASTIC_HOME}/Bear-${BEAR_VERSION}
-ARG BEAR_HOME=${SYNTASTIC_HOME}/bear
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -127,12 +126,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -fsSL https://codeload.github.com/rizsotto/Bear/tar.gz/"${BEAR_VERSION}" | tar -xz -C "${SYNTASTIC_HOME}" \
     && cmake -B"${BEAR_SRC}" -H"${BEAR_SRC}" \
     && make -C "${BEAR_SRC}" all \
-    && make -C "${BEAR_SRC}" package \
-    && mkdir "${BEAR_HOME}" \
-    && "${BEAR_SRC}"/bear-"${BEAR_VERSION}"-Linux.sh --prefix="${BEAR_HOME}" --exclude-subdir \
+    && make -C "${BEAR_SRC}" install \
     && rm -rf "${BEAR_SRC}"
-
-ENV PATH=${BEAR_HOME}/usr/local/bin:$PATH
 
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
