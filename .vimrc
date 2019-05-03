@@ -238,6 +238,8 @@ let g:syntastic_aggregate_errors = 1
 " Add shortcut mappings for errors navigation
 nmap <leader>n :lnext<CR>
 nmap <leader>p :lprevious<CR>
+nmap <leader>e :Errors<CR>
+nmap <leader>q :lclose<CR>
 nmap <F7> :SyntasticToggleMode<CR>
 
 " Classpath to use
