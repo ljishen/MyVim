@@ -25,7 +25,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-commentary'
 Plugin 'google/vim-searchindex'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-expand-region'
 Plugin 'Raimondi/delimitMate'
 Plugin 'sheerun/vim-polyglot'
@@ -276,19 +276,6 @@ let g:syntastic_ansible_checkers = ['ansible_lint']
 
 
 " ======================================================================================
-" Indent Guides
-" ======================================================================================
-
-" Have indent guides enabled by default
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Start showing guides from indent level 2
-let g:indent_guides_start_level = 2
-
-let g:indent_guides_guide_size = 1
-
-
-" ======================================================================================
 " vim-expand-region
 " ======================================================================================
 
@@ -296,11 +283,18 @@ let g:indent_guides_guide_size = 1
 
 
 " ======================================================================================
-" Vim Better Whitespace
+" Vim Better Whitespace Plugin
 " ======================================================================================
 
-" Strip all trailing whitespace everytime you save the file for all file types
-"#autocmd BufEnter * EnableStripWhitespaceOnSave
+" Enable highlighting and stripping whitespace on save by default
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
+
+" Strip white lines at the end of the file when stripping whitespace
+let g:strip_whitelines_at_eof=1
+
+" Highlight space characters that appear before or in-between tabs
+let g:show_spaces_that_precede_tabs=1
 
 
 " ======================================================================================

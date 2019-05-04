@@ -34,7 +34,7 @@
 - [[syntastic](https://github.com/vim-syntastic/syntastic)] Syntax checking hacks for vim.
 - [[vim-commentary](https://github.com/tpope/vim-commentary)] Comment stuff out.
 - [[vim-searchindex](https://github.com/google/vim-searchindex)] Display number of search matches & index of a current match.
-- [[vim-indent-guides](https://github.com/nathanaelkane/vim-indent-guides)] A Vim plugin for visually displaying indent levels in code.
+- [[indentLine](https://github.com/Yggdroot/indentLine)] Show vertical lines for indent with conceal feature.
 - [[vim-expand-region](https://github.com/terryma/vim-expand-region)] Vim plugin that allows you to visually select increasingly larger regions of text using the same key combination.
 - [[delimitMate](https://github.com/Raimondi/delimitMate)] Provides insert mode auto-completion for quotes, parens, brackets, etc.
 - [[vim-polyglot](https://github.com/sheerun/vim-polyglot)] A collection of language packs for Vim.
