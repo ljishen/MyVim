@@ -257,6 +257,11 @@ let g:syntastic_c_include_dirs = ["includes", "headers"]
 " Tell syntastic which checker you want to run for .c file
 let g:syntastic_c_checkers = ['checkpatch', 'clang_check', 'cppcheck', 'gcc', 'make']
 
+" File containing additional compilation flags to be passed to the GCC checker
+" See
+"   https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic-checkers.txt
+let g:syntastic_c_config_file = '.syntastic_c_config'
+
 " Use/Search compilation databases instead of passing compilation flags explicitly
 " Check out the ClangCheck section from
 "   https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic-checkers.txt
