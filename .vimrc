@@ -94,7 +94,7 @@ set backspace=indent,eol,start
 " Configure indentation for filetypes
 " https://tedlogan.com/techblog3.html
 autocmd FileType * set softtabstop=4 | set shiftwidth=4 | set expandtab
-autocmd FileType c set tabstop=8 | set softtabstop=8 | set shiftwidth=8 | set noexpandtab
+autocmd FileType c,make set tabstop=8 | set softtabstop=8 | set shiftwidth=8 | set noexpandtab
 
 " No backup made
 set nobackup
