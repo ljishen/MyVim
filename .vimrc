@@ -255,7 +255,7 @@ let g:syntastic_java_checkers = ['checkstyle', 'javac']
 let g:syntastic_c_include_dirs = ["includes", "headers"]
 
 " Tell syntastic which checker you want to run for .c file
-let g:syntastic_c_checkers = ['checkpatch', 'cppcheck', 'gcc', 'make']
+let g:syntastic_c_checkers = ['checkpatch', 'clang_check', 'cppcheck', 'gcc', 'make']
 
 " Tell syntastic which checker you want to run for .cpp file
 let g:syntastic_cpp_checkers = ['cppcheck', 'gcc']
