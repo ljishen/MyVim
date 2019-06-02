@@ -23,8 +23,8 @@
 ## Bundled Plugins
 
 - [[vim-airline](https://github.com/vim-airline/vim-airline)] Lean & mean status/tabline for vim that's light as air.
-- [[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)]
-- [[vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)] Solarized Colorscheme for Vim.
+- [[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)] A collection of themes for vim-airline.
+- [[gruvbox](https://github.com/morhetz/gruvbox)] Retro groove color scheme for Vim.
 - [[vim-devicons](https://github.com/ryanoasis/vim-devicons)] Adds file type glyphs/icons to popular Vim plugins.
 - [[vim-illuminate](https://github.com/RRethy/vim-illuminate)] Vim plugin for selectively illuminating other uses of current word under the cursor.
 - [[undotree](https://github.com/mbbill/undotree)] The ultimate undo history visualizer for VIM.

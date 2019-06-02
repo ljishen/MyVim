@@ -14,7 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'morhetz/gruvbox'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'RRethy/vim-illuminate'
 
@@ -171,16 +171,11 @@ let airline#extensions#syntastic#stl_format_err = '%W{[%w(#%fw)]}'
 
 
 " ======================================================================================
-" vim-colors-solarized
+" gruvbox
 " ======================================================================================
 
 set background=light
-
-" This line has to go before the `colorschem solarized` line
-" https://github.com/altercation/vim-colors-solarized#important-note-for-terminal-users
-let g:solarized_termcolors=256
-
-"#colorscheme solarized
+"#colorscheme gruvbox
 
 
 " ======================================================================================
