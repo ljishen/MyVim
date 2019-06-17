@@ -162,7 +162,7 @@ if [[ :$PATH: != *:"$home_local_bin":* ]] ; then
 fi
 
 # Install Bear to support C-family semantic completion used by YouCompleteMe
-BEAR_VERSION=2.3.13
+BEAR_VERSION=2.4.0
 curl -fsSL https://codeload.github.com/rizsotto/Bear/tar.gz/"${BEAR_VERSION}" | tar -xz -C "${SYNTASTIC_HOME}"
 BEAR_SRC="${SYNTASTIC_HOME}"/Bear-"${BEAR_VERSION}"
 
@@ -170,13 +170,7 @@ BEAR_SRC="${SYNTASTIC_HOME}"/Bear-"${BEAR_VERSION}"
 #   https://stackoverflow.com/a/20611964
 #   https://stackoverflow.com/a/24435795
 cmake -B"${BEAR_SRC}" -H"${BEAR_SRC}"
-make -C "${BEAR_SRC}" all
-make -C "${BEAR_SRC}" package
-
-BEAR_HOME="${SYNTASTIC_HOME}"/bear
-rm -rf "${BEAR_HOME}" && mkdir "${BEAR_HOME}"
-"${BEAR_SRC}"/bear-"${BEAR_VERSION}"-Linux.sh --prefix="${BEAR_HOME}" --exclude-subdir
-PATH="${BEAR_HOME}/usr/local/bin:$PATH"
+sudo make -C "${BEAR_SRC}" install
 
 rm -rf "${BEAR_SRC}"
 
