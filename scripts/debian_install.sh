@@ -4,7 +4,7 @@ set -eu -o pipefail
 
 ID_LIKE=$(grep -oP '^ID_LIKE=\K\w+' /etc/os-release 2> /dev/null)
 family=$(echo "$ID_LIKE" | tr '[:upper:]' '[:lower:]')
-if [ "$family" != "debian" ]; then
+if [[ "$family" != "debian" ]]; then
   echo "Operation aborted because the current OS is not a Debian-based distribution."
   exit 0
 fi
@@ -50,7 +50,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
   libffi-dev \
   libssl-dev \
   shellcheck \
-  ${jdk_pkgs[@]+"${jdk_pkgs[@]}"} &&
+  "${jdk_pkgs[*]:-}" &&
   sudo apt-get clean &&
   sudo rm -rf /var/lib/apt/lists/*
 
@@ -78,15 +78,14 @@ sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$HOME"/.profile
 printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/my-vim) ####\\n\\n" >> "$HOME"/.profile
 
 function export_envs() {
-  for env in $1; do
-    export "${env?}"
-    printf "export %s\\n" "$env" >> "$HOME"/.profile
-  done
+  if [[ -n "$1" ]]; then
+    export "$1"
+    printf "export %s\\n" "$1" >> "$HOME"/.profile
+  fi
 }
 
-# Check if TERM is already set so that it is not overwritten if tmux/screen
-# has set a value for it.
-update_term="if [ -z \"\$TERM\" ]; then export TERM=xterm-256color; fi"
+# If TERM is already set by tmux/screen then we do not overwrite the value.
+update_term="if [[ -z \"\$TERM\" ]]; then export TERM=xterm-256color; fi"
 eval "$update_term"
 printf "%s\\n" "$update_term" >> "$HOME"/.profile
 
@@ -122,9 +121,9 @@ CHECKSTYLE_VERSION=8.20
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
   curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar
+export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar"
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
-export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar \
-             CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
+export_envs "CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
 
 # Install Checkpatch
 CHECKPATCH_HOME="${SYNTASTIC_HOME}"/checkpatch
