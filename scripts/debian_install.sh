@@ -117,11 +117,11 @@ SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-CHECKSTYLE_VERSION=8.20
+CHECKSTYLE_VERSION=8.21
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
-  curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar
-export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-${CHECKSTYLE_VERSION}-all.jar"
+  curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-all.jar
+export_envs "CHECKSTYLE_JAR=${CHECKSTYLE_HOME}/checkstyle-all.jar"
 curl -fsSL https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml -o "${CHECKSTYLE_HOME}"/google_checks.xml
 export_envs "CHECKSTYLE_CONFIG=${CHECKSTYLE_HOME}/google_checks.xml"
 
@@ -135,13 +135,13 @@ PATH="${CHECKPATCH_HOME}:$PATH"
 # Install google-java-format
 GOOGLE_JAVA_FORMAT_VERSION=1.7
 GOOGLE_JAVA_FORMAT_HOME="${SYNTASTIC_HOME}"/google-java-format
-export_envs "GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar"
+export_envs "GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-all-deps.jar"
 mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" &&
   curl -fsSL https://github.com/google/google-java-format/releases/download/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"/google-java-format-"${GOOGLE_JAVA_FORMAT_VERSION}"-all-deps.jar -o "${GOOGLE_JAVA_FORMAT_JAR}"
 
 # Install hadolint (for Dockerfile)
 if [[ $(arch) == x86_64 ]]; then
-  HADOLINT_VERSION=1.16.3
+  HADOLINT_VERSION=1.17.1
   HADOLINT_HOME="${SYNTASTIC_HOME}"/hadolint
   mkdir -p "${HADOLINT_HOME}" &&
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
@@ -181,3 +181,4 @@ if [ ! -f "$tmux_conf_file" ] || ! grep -q "tmux-256color" "$tmux_conf_file"; th
 fi
 
 printf "\\nInstallation completed successfully.\\n"
+printf "Please re-log in to apply the updated environment variable.\\n"
