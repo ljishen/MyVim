@@ -85,9 +85,15 @@ function export_envs() {
 }
 
 # If TERM is already set by tmux/screen then we do not overwrite the value.
-update_term="if [[ -z \"\$TERM\" ]]; then export TERM=xterm-256color; fi"
-eval "$update_term"
-printf "%s\\n" "$update_term" >> "$HOME"/.profile
+UPDATE_TERM=$(
+  cat << 'SCRIPT_EOF'
+if [[ $(uname -r) == *"-Microsoft"* || -z "$TERM" ]]; then
+  export TERM=screen.xterm-256color
+fi
+SCRIPT_EOF
+)
+eval "$UPDATE_TERM"
+printf "%s\\n" "$UPDATE_TERM" >> "$HOME"/.profile
 
 # Install js-beautify as the JSON Formatter for plugin google/vim-codefmt
 # Install bandit, flake8, pycodestyle and pydocstyle as the syntax checkers
