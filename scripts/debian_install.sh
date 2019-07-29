@@ -87,8 +87,10 @@ function export_envs() {
 # If TERM is already set by tmux/screen then we do not overwrite the value.
 UPDATE_TERM=$(
   cat << 'SCRIPT_EOF'
-if [[ $(uname -r) == *"-Microsoft"* || -z "$TERM" ]]; then
+if [[ -f /usr/share/terminfo/s/screen.xterm-256color ]]; then
   export TERM=screen.xterm-256color
+elif [[ -f /usr/share/terminfo/x/xterm-256color ]]; then
+  export TERM=xterm-256color
 fi
 SCRIPT_EOF
 )
