@@ -2,11 +2,11 @@
 
 set -eu -o pipefail
 
-ID_LIKE=$(grep -oP '^ID_LIKE=\K\w+' /etc/os-release 2> /dev/null)
+ID_LIKE=$(grep -oP '^ID_LIKE="?\K[^"]+' /etc/os-release 2> /dev/null)
 family=$(echo "$ID_LIKE" | tr '[:upper:]' '[:lower:]')
 if [[ "$family" != "debian" ]]; then
-  echo "Operation aborted because the current OS is not a Debian-based distribution."
-  exit 0
+  echo >&2 "Operation aborted because the current OS is not a Debian-based distribution."
+  exit 1
 fi
 
 jdk_pkgs=()
