@@ -32,6 +32,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'elzr/vim-json'
 Plugin 'majutsushi/tagbar'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'Valloric/YouCompleteMe'
 
 " ======================================================================================
@@ -278,7 +279,7 @@ let g:syntastic_filetype_map = { "Dockerfile": "dockerfile" }
 let g:syntastic_dockerfile_checkers = ['hadolint']
 
 " Tell syntastic which checker you wnat to run for sh
-let g:syntastic_sh_checkers = ['shellcheck']
+let g:syntastic_sh_checkers = ['sh', 'shellcheck']
 
 " Tell syntastic which checker you wnat to run for ansible
 let g:syntastic_ansible_checkers = ['ansible_lint']

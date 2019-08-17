@@ -41,5 +41,6 @@
 - [[vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)] Better whitespace highlighting for Vim.
 - [[vim-json](https://github.com/elzr/vim-json)] Distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 - [[tagbar](https://github.com/majutsushi/tagbar)] Vim plugin that displays tags in a window, ordered by scope.
+- [[Gutentags](https://github.com/ludovicchabant/vim-gutentags)] A Vim plugin that manages your tag files.
 - [[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)] A code-completion engine for Vim.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.
