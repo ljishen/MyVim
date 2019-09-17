@@ -2,7 +2,7 @@
 
 set -eu -o pipefail
 
-ID_LIKE=$(grep -oP '^ID_LIKE="?\K[^"]+' /etc/os-release 2> /dev/null)
+ID_LIKE=$(awk -F'=' '$1 == "ID_LIKE" { gsub("\"", "", $2); print $2 }' /etc/os-release)
 family=$(echo "$ID_LIKE" | tr '[:upper:]' '[:lower:]')
 if [[ "$family" != "debian" ]]; then
   echo >&2 "Operation aborted because the current OS is not a Debian-based distribution."
@@ -79,7 +79,7 @@ printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/
 
 function export_envs() {
   if [[ -n "$1" ]]; then
-    export "$1"
+    eval "export $1"
     printf "export %s\\n" "$1" >> "$HOME"/.profile
   fi
 }
@@ -188,5 +188,4 @@ if [ ! -f "$tmux_conf_file" ] || ! grep -q "tmux-256color" "$tmux_conf_file"; th
   echo 'set -g default-terminal "tmux-256color"' >> "$tmux_conf_file"
 fi
 
-printf "\\nInstallation completed successfully.\\n"
-printf "Please re-log in to apply the updated environment variable.\\n"
+printf "\\nInstallation complete successfully. Please log out and login to apply the environment variable updates.\\n"
