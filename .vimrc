@@ -22,6 +22,7 @@ Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-commentary'
 Plugin 'google/vim-searchindex'
@@ -216,6 +217,36 @@ let g:ctrlp_map = '<c-f>'
 
 " Ignore version control folders
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+" ======================================================================================
+" vim-bookmarks
+" ======================================================================================
+
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+
+let g:bookmark_manage_per_buffer = 1
+
+" Finds the Git super-project directory based on the file passed as an argument.
+function! g:BMBufferFileLocation(file)
+    let filename = 'vim-bookmarks'
+    let location = ''
+    if isdirectory(fnamemodify(a:file, ":p:h").'/.git')
+        " Current work dir is git's work tree
+        let location = fnamemodify(a:file, ":p:h").'/.git'
+    else
+        " Look upwards (at parents) for a directory named '.git'
+        let location = finddir('.git', fnamemodify(a:file, ":p:h").'/.;')
+    endif
+    if len(location) > 0
+        return simplify(location.'/.'.filename)
+    else
+        return simplify(fnamemodify(a:file, ":p:h").'/.'.filename)
+    endif
+endfunction
 
 
 " ======================================================================================

@@ -31,6 +31,7 @@
 - [[nerdtree](https://github.com/scrooloose/nerdtree)] A tree explorer plugin for vim.
 - [[nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)] A plugin of NERDTree showing git status flags.
 - [[ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim)] Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+- [[vim-bookmarks](https://github.com/MattesGroeger/vim-bookmarks)] This vim plugin allows toggling bookmarks per line. A quickfix window gives access to all bookmarks. Annotations can be added as well.
 - [[syntastic](https://github.com/vim-syntastic/syntastic)] Syntax checking hacks for vim.
 - [[vim-commentary](https://github.com/tpope/vim-commentary)] Comment stuff out.
 - [[vim-searchindex](https://github.com/google/vim-searchindex)] Display number of search matches & index of a current match.
@@ -41,6 +42,6 @@
 - [[vim-better-whitespace](https://github.com/ntpeters/vim-better-whitespace)] Better whitespace highlighting for Vim.
 - [[vim-json](https://github.com/elzr/vim-json)] Distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 - [[tagbar](https://github.com/majutsushi/tagbar)] Vim plugin that displays tags in a window, ordered by scope.
-- [[Gutentags](https://github.com/ludovicchabant/vim-gutentags)] A Vim plugin that manages your tag files.
+- [[vim-gutentags](https://github.com/ludovicchabant/vim-gutentags)] A Vim plugin that manages your tag files.
 - [[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)] A code-completion engine for Vim.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.
