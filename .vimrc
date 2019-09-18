@@ -85,10 +85,6 @@ set hlsearch
 " Start search when you type the first character of the search string
 set incsearch
 
-" Enable the use of the mouse for scrolling
-set ttymouse=xterm2
-set mouse=a
-
 " The screen will not be redrawn while executing macros,
 " registers and other commands that have not been typed.
 set lazyredraw
