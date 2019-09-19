@@ -50,7 +50,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
   libffi-dev \
   libssl-dev \
   shellcheck \
-  "${jdk_pkgs[*]:-}" &&
+  "${jdk_pkgs[@]:-}" &&
   sudo apt-get clean &&
   sudo rm -rf /var/lib/apt/lists/*
 
