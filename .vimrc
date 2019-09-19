@@ -218,6 +218,9 @@ let g:ctrlp_map = '<c-f>'
 " Ignore version control folders
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
+" Overcome limit imposed by max height
+let g:ctrlp_match_window = 'results:100'
+
 
 " ======================================================================================
 " vim-bookmarks
