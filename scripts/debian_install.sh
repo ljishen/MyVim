@@ -28,6 +28,7 @@ fi
 #     with semantic support in the following command:
 #     /bin/sh -c $HOME/.vim/bundle/YouCompleteMe/install.py
 # libffi-dev and libssl-dev is required to build ansible-lint
+# global is used by plugin skywind3000/gutentags_plus
 
 ## shellcheck for syntax checking of sh
 sudo apt-get update && sudo apt-get install -y --no-install-recommends \
@@ -50,6 +51,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
   libffi-dev \
   libssl-dev \
   shellcheck \
+  global \
   "${jdk_pkgs[@]:-}" &&
   sudo apt-get clean &&
   sudo rm -rf /var/lib/apt/lists/*

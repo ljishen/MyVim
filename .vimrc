@@ -34,6 +34,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'elzr/vim-json'
 Plugin 'majutsushi/tagbar'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
 Plugin 'Valloric/YouCompleteMe'
 
 " ======================================================================================
@@ -389,3 +390,20 @@ nmap <F8> :TagbarToggle<CR>
 "   https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic.txt
 "   https://github.com/Valloric/YouCompleteMe#the-gycm_show_diagnostics_ui-option
 let g:ycm_show_diagnostics_ui = 0
+
+
+" ======================================================================================
+" Gutentags_plus
+" ======================================================================================
+
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+
+" generate datebases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+" change focus to quickfix window after search (optional).
+let g:gutentags_plus_switch = 1
