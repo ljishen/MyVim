@@ -91,6 +91,8 @@ if [[ -f /usr/share/terminfo/s/screen.xterm-256color ]]; then
   export TERM=screen.xterm-256color
 elif [[ -f /usr/share/terminfo/x/xterm-256color ]]; then
   export TERM=xterm-256color
+else
+  export TERM=tmux-256color
 fi
 SCRIPT_EOF
 )
