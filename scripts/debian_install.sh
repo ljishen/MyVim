@@ -182,10 +182,13 @@ export_envs "PATH=$PATH"
 
 printf "\\n#### END ####" >> "$HOME"/.profile
 
-# Config .tmux.conf for Vim running inside tmux
+# Configure .tmux.conf for Vim running inside tmux
 tmux_conf_file="$HOME"/.tmux.conf
 if [ ! -f "$tmux_conf_file" ] || ! grep -q "tmux-256color" "$tmux_conf_file"; then
   echo 'set -g default-terminal "tmux-256color"' >> "$tmux_conf_file"
+fi
+if [ ! -f "$tmux_conf_file" ] || ! grep -q "terminal-overrides" "$tmux_conf_file"; then
+  echo 'set -ga terminal-overrides ",*256col*:Tc"' >> "$tmux_conf_file"
 fi
 
 printf "\\nInstallation complete successfully. Please log out and login to apply the environment variable updates.\\n"

@@ -105,6 +105,14 @@ set nowritebackup
 " Enables a menu at the bottom of the window
 set wildmenu
 
+" Enable 24-bit color
+"   See https://github.com/tmux/tmux/issues/1246
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 " Need to set before the colorscheme
 set t_Co=256
 
@@ -235,20 +243,20 @@ let g:bookmark_manage_per_buffer = 1
 
 " Finds the Git super-project directory based on the file passed as an argument.
 function! g:BMBufferFileLocation(file)
-    let filename = 'vim-bookmarks'
-    let location = ''
-    if isdirectory(fnamemodify(a:file, ":p:h").'/.git')
-        " Current work dir is git's work tree
-        let location = fnamemodify(a:file, ":p:h").'/.git'
-    else
-        " Look upwards (at parents) for a directory named '.git'
-        let location = finddir('.git', fnamemodify(a:file, ":p:h").'/.;')
-    endif
-    if len(location) > 0
-        return simplify(location.'/.'.filename)
-    else
-        return simplify(fnamemodify(a:file, ":p:h").'/.'.filename)
-    endif
+  let filename = 'vim-bookmarks'
+  let location = ''
+  if isdirectory(fnamemodify(a:file, ":p:h").'/.git')
+    " Current work dir is git's work tree
+    let location = fnamemodify(a:file, ":p:h").'/.git'
+  else
+    " Look upwards (at parents) for a directory named '.git'
+    let location = finddir('.git', fnamemodify(a:file, ":p:h").'/.;')
+  endif
+  if len(location) > 0
+    return simplify(location.'/.'.filename)
+  else
+    return simplify(fnamemodify(a:file, ":p:h").'/.'.filename)
+  endif
 endfunction
 
 
