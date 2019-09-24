@@ -129,7 +129,7 @@ SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-CHECKSTYLE_VERSION=8.21
+CHECKSTYLE_VERSION=8.24
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
   curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-all.jar
@@ -153,7 +153,7 @@ mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" &&
 
 # Install hadolint (for Dockerfile)
 if [[ $(arch) == x86_64 ]]; then
-  HADOLINT_VERSION=1.17.1
+  HADOLINT_VERSION=1.17.2
   HADOLINT_HOME="${SYNTASTIC_HOME}"/hadolint
   mkdir -p "${HADOLINT_HOME}" &&
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
@@ -169,7 +169,7 @@ if [[ :$PATH: != *:"$home_local_bin":* ]]; then
 fi
 
 # Install Bear to support C-family semantic completion used by YouCompleteMe
-BEAR_VERSION=2.4.0
+BEAR_VERSION=2.4.2
 curl -fsSL https://codeload.github.com/rizsotto/Bear/tar.gz/"${BEAR_VERSION}" | tar -xz -C "${SYNTASTIC_HOME}"
 BEAR_SRC="${SYNTASTIC_HOME}"/Bear-"${BEAR_VERSION}"
 
