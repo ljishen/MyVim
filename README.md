@@ -2,7 +2,7 @@
 
 ## Screenshot
 
-![screenshot](https://user-images.githubusercontent.com/468515/38783573-9f4e3d42-40b8-11e8-9338-867a8d42483a.png)
+![screenshot](https://user-images.githubusercontent.com/468515/65902642-c0fa1280-e36f-11e9-836f-f9acabf407ea.png)
 
 
 ## Usage
