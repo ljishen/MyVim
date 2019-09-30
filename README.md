@@ -43,5 +43,6 @@
 - [[vim-json](https://github.com/elzr/vim-json)] Distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing.
 - [[tagbar](https://github.com/majutsushi/tagbar)] Vim plugin that displays tags in a window, ordered by scope.
 - [[vim-gutentags](https://github.com/ludovicchabant/vim-gutentags)] A Vim plugin that manages your tag files.
+- [[gutentags_plus](https://github.com/skywind3000/gutentags_plus)] The right way to use gtags with gutentags.
 - [[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)] A code-completion engine for Vim.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.
