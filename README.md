@@ -45,4 +45,5 @@
 - [[vim-gutentags](https://github.com/ludovicchabant/vim-gutentags)] A Vim plugin that manages your tag files.
 - [[gutentags_plus](https://github.com/skywind3000/gutentags_plus)] The right way to use gtags with gutentags.
 - [[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)] A code-completion engine for Vim.
+- [[YCM-Generator](https://github.com/rdnetto/YCM-Generator)] Generates config files for YouCompleteMe.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.

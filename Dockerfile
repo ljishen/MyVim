@@ -10,14 +10,16 @@ LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 #    are used for installing/building python packages (e.g. jsbeautifier, flake8)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
+# clang is for plugin Vim plugin YCM-Generator (https://github.com/rdnetto/YCM-Generator)
 # clang-format is used by plugin google/vim-codefmt
 # python3-dev is required to build typed-ast, which is required by jsbeautifier
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
 #     with semantic support in the following command:
 #     /bin/sh -c /root/.vim/bundle/YouCompleteMe/install.py
 # libffi-dev and libssl-dev is required to build ansible-lint
+# shellcheck for syntax checking of sh
 
-## shellcheck for syntax checking of sh
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
         tar \
@@ -30,6 +32,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-wheel \
         cppcheck \
         exuberant-ctags \
+        clang \
         clang-format \
         python-dev \
         python3-dev \
@@ -65,6 +68,8 @@ ENV TERM tmux-256color
 # Install mypy as the syntax checkers for Python3 used in plugin vim-syntastic/syntastic
 # pylint is a code linter for Python used by plugin vim-syntastic/syntastic
 # ansible-lint is a best-practices linter for Ansible playbooks used by plugin vim-syntastic/syntastic
+
+# hadolint ignore=DL3013
 RUN pip3 install --upgrade \
         jsbeautifier \
         flake8 \

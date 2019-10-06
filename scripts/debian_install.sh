@@ -22,6 +22,7 @@ fi
 #    are used for installing/building python packages (e.g. jsbeautifier, flake8)
 # cppcheck for syntax checking of c and c++
 # exuberant-ctags for Vim plugin Tagbar (https://github.com/majutsushi/tagbar#dependencies)
+# clang is for plugin Vim plugin YCM-Generator (https://github.com/rdnetto/YCM-Generator)
 # clang-format is used by plugin google/vim-codefmt
 # python3-dev is required to build typed-ast, which is required by jsbeautifier
 # python-dev, cmake and build-essential are used for compiling YouCompleteMe(YCM)
@@ -43,6 +44,7 @@ sudo apt-get update && sudo apt-get install -y --no-install-recommends \
   python3-wheel \
   cppcheck \
   exuberant-ctags \
+  clang \
   clang-format \
   python-dev \
   python3-dev \

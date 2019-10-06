@@ -36,6 +36,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'skywind3000/gutentags_plus'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 
 " ======================================================================================
 " Add maktaba and codefmt to the runtimepath.
@@ -384,7 +385,7 @@ nmap <F8> :TagbarToggle<CR>
 " ======================================================================================
 
 " By default "YouCompleteMe" disables syntastic's checkers for the "c", "cpp", "objc",
-" and "objcpp" filetypes, in order to allow its own checkers to run.
+" "objcpp", and "cuda" filetypes, in order to allow its own checkers to run.
 " Set this options to 0 to turns off YCM's diagnostic display features.
 " See
 "   https://github.com/vim-syntastic/syntastic/blob/master/doc/syntastic.txt
