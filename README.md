@@ -1,4 +1,4 @@
-# my-vim
+# MyVim
 
 ## Screenshot
 
@@ -11,7 +11,7 @@
 
 2. Run within docker container
    ```bash
-   docker run --rm -ti ljishen/my-vim
+   docker run --rm -ti ljishen/MyVim
    ```
 
 3. You can also install to local host

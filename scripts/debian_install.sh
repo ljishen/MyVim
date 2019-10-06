@@ -73,13 +73,13 @@ rm -rf "${HOME}"/.vim/bundle/Vundle.vim &&
 mkdir -p "$HOME"/.undodir
 
 # Remove the old exported envs first
-sed -i '/ljishen\/my-vim/,/#### END ####/d' "$HOME"/.profile
+sed -i '/ljishen\/MyVim/,/#### END ####/d' "$HOME"/.profile
 
 # Delete all trailing blank lines at end of file
 #   http://sed.sourceforge.net/sed1line.txt
 sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$HOME"/.profile
 
-printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/my-vim) ####\\n\\n" >> "$HOME"/.profile
+printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/MyVim) ####\\n\\n" >> "$HOME"/.profile
 
 function export_envs() {
   if [[ -n "$1" ]]; then
