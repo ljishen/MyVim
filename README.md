@@ -11,7 +11,7 @@
 
 2. Run within docker container
    ```bash
-   docker run --rm -ti ljishen/MyVim
+   docker run --rm -ti ljishen/my-vim
    ```
 
 3. You can also install to local host
