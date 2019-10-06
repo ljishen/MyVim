@@ -392,6 +392,9 @@ nmap <F8> :TagbarToggle<CR>
 "   https://github.com/Valloric/YouCompleteMe#the-gycm_show_diagnostics_ui-option
 let g:ycm_show_diagnostics_ui = 0
 
+" Stop asking once per .ycm_extra_conf.py file if it is safe to be loaded
+let g:ycm_confirm_extra_conf = 0
+
 
 " ======================================================================================
 " Gutentags_plus
