@@ -131,7 +131,7 @@ SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-CHECKSTYLE_VERSION=8.24
+CHECKSTYLE_VERSION=8.26
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
   curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-all.jar
