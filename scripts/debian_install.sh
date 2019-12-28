@@ -131,7 +131,7 @@ SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-CHECKSTYLE_VERSION=8.26
+CHECKSTYLE_VERSION=8.27
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
   curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-all.jar
@@ -155,7 +155,7 @@ mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" &&
 
 # Install hadolint (for Dockerfile)
 if [[ $(arch) == x86_64 ]]; then
-  HADOLINT_VERSION=1.17.2
+  HADOLINT_VERSION=1.17.3
   HADOLINT_HOME="${SYNTASTIC_HOME}"/hadolint
   mkdir -p "${HADOLINT_HOME}" &&
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint
