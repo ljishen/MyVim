@@ -72,14 +72,16 @@ rm -rf "${HOME}"/.vim/bundle/Vundle.vim &&
 # make folder to persistent undo used by plugin mbbill/undotree
 mkdir -p "$HOME"/.undodir
 
-# Remove the old exported envs first
-sed -i '/ljishen\/MyVim/,/#### END ####/d' "$HOME"/.profile
+# Remove obsolete block
+BEGIN_MARKER="#### BEGIN MyVim MANAGED BLOCK ####"
+END_MARKER="#### END MyVim MANAGED BLOCK ####"
+sed -i "/$BEGIN_MARKER/,/$END_MARKER/d" "$HOME"/.profile
 
 # Delete all trailing blank lines at end of file
 #   http://sed.sourceforge.net/sed1line.txt
 sed -i -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$HOME"/.profile
 
-printf "\\n\\n#### Export Variables for Vim Plugins (https://github.com/ljishen/MyVim) ####\\n\\n" >> "$HOME"/.profile
+printf "\\n\\n%s\\n\\n" "$BEGIN_MARKER" >> "$HOME"/.profile
 
 function export_envs() {
   if [[ -n "$1" ]]; then
@@ -186,7 +188,7 @@ rm -rf "${BEAR_SRC}"
 # Finally export the PATH with all the updates on this env
 export_envs "PATH=$PATH"
 
-printf "\\n#### END ####" >> "$HOME"/.profile
+printf "\\n%s" "$END_MARKER" >> "$HOME"/.profile
 
 # Configure .tmux.conf for Vim running inside tmux
 tmux_conf_file="$HOME"/.tmux.conf
