@@ -1,4 +1,4 @@
-# MyVim
+# MyVim [![](https://images.microbadger.com/badges/version/ljishen/my-vim:1.3.svg)](https://microbadger.com/images/ljishen/my-vim:1.3)
 
 ## Screenshot
 
