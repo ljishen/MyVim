@@ -1,7 +1,19 @@
-# VERSION 1.2
-
 FROM openjdk:8-jdk-slim-stretch
 LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="ljishen/MyVim" \
+      org.label-schema.description="Personalized all-in-one development environment in VIM!" \
+      org.label-schema.url="https://github.com/ljishen/MyVim" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/ljishen/MyVim" \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
+
 
 # perl for Checkpatch (syntax checking for C)
 # gcc for syntax checking of c
