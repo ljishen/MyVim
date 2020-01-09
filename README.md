@@ -48,4 +48,6 @@
 - [[vim-searchindex](https://github.com/google/vim-searchindex)] Display number of search matches & index of a current match.
 - [[vim-smoothie](https://github.com/psliwka/vim-smoothie)] Smooth scrolling for Vim done right.
 - [[vim-startify](https://github.com/mhinz/vim-startify)] It provides dynamically created headers or footers and uses configurable lists to show recently used or bookmarked files and persistent sessions.
+- [[vim-visual-star-search](https://github.com/nelstrom/vim-visual-star-search)] Allow you to select some text using Vim's visual mode and then hit *
+and # to search for it elsewhere in the file.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.
