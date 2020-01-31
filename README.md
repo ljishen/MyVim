@@ -50,4 +50,5 @@
 - [[vim-startify](https://github.com/mhinz/vim-startify)] It provides dynamically created headers or footers and uses configurable lists to show recently used or bookmarked files and persistent sessions.
 - [[vim-visual-star-search](https://github.com/nelstrom/vim-visual-star-search)] Allow you to select some text using Vim's visual mode and then hit *
 and # to search for it elsewhere in the file.
+- [[vim-fugitive](https://github.com/tpope/vim-fugitive)] A Git wrapper written as a plugin for the Vim text editor.
 - [[vim-codefmt](https://github.com/google/vim-codefmt)] codefmt is a utility for syntax-aware code formatting.

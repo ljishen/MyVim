@@ -50,6 +50,7 @@ Plugin 'google/vim-searchindex'
 Plugin 'psliwka/vim-smoothie'
 Plugin 'mhinz/vim-startify'
 Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'tpope/vim-fugitive'
 
 " ======================================================================================
 " Add maktaba and codefmt to the runtimepath.
