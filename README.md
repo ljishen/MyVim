@@ -1,4 +1,4 @@
-# MyVim [![](https://images.microbadger.com/badges/version/ljishen/my-vim:1.3.svg)](https://microbadger.com/images/ljishen/my-vim:1.3)
+# MyVim [![Build Status](https://travis-ci.com/ljishen/MyVim.svg?branch=master)](https://travis-ci.com/ljishen/MyVim) ![Docker Build Status](https://img.shields.io/docker/build/ljishen/my-vim) [![](https://images.microbadger.com/badges/version/ljishen/my-vim:1.3.svg)](https://microbadger.com/images/ljishen/my-vim:1.3) [![GitHub license](https://img.shields.io/github/license/ljishen/MyVim)](https://github.com/ljishen/MyVim/blob/master/LICENSE)
 
 ## Screenshot
 

@@ -1,0 +1,16 @@
+# Setting the language key to bash, sh or shell is equivalent to language: minimal.
+language: bash
+
+arch:
+  - amd64
+  - arm64
+
+os: linux # different CPU architectures are only supported on Linux
+
+install:
+  - ./scripts/debian_install.sh
+
+jobs:
+  include:
+    - dist: xenial
+    - dist: bionic
