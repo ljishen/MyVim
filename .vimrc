@@ -16,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'joshdick/onedark.vim'
+Plugin 'rakr/vim-one'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'RRethy/vim-illuminate'
 
@@ -219,7 +220,12 @@ endif
 let g:onedark_termcolors = 256
 let g:airline_theme='onedark'
 
-"#colorscheme onedark
+let hour = strftime("%H")
+if 6 <= hour && hour < 18
+"#  colorscheme one
+else
+"#  colorscheme onedark
+endif
 
 
 " ======================================================================================
