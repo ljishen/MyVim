@@ -12,7 +12,7 @@ fi
 jdk_pkgs=()
 # javac is used for syntastic checker for .java file
 if ! hash javac 2> /dev/null; then
-  jdk_pkgs=(openjdk-8-jdk openjdk-8-jre-headless)
+  jdk_pkgs=(openjdk-11-jdk-headless)
 fi
 
 # perl for Checkpatch (syntax checking for C)
@@ -133,7 +133,7 @@ SYNTASTIC_HOME="$HOME"/.vim/syntastic
 mkdir -p "$SYNTASTIC_HOME"
 
 # Install Checkstyle (for Java)
-CHECKSTYLE_VERSION=8.30
+CHECKSTYLE_VERSION=8.33
 CHECKSTYLE_HOME="${SYNTASTIC_HOME}"/checkstyle
 mkdir -p "${CHECKSTYLE_HOME}" &&
   curl -fsSL https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar -o "${CHECKSTYLE_HOME}"/checkstyle-all.jar
@@ -149,7 +149,7 @@ chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
 PATH="${CHECKPATCH_HOME}:$PATH"
 
 # Install google-java-format
-GOOGLE_JAVA_FORMAT_VERSION=1.7
+GOOGLE_JAVA_FORMAT_VERSION=1.8
 GOOGLE_JAVA_FORMAT_HOME="${SYNTASTIC_HOME}"/google-java-format
 export_envs "GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-all-deps.jar"
 mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" &&
@@ -157,7 +157,7 @@ mkdir -p "${GOOGLE_JAVA_FORMAT_HOME}" &&
 
 # Install hadolint (for Dockerfile)
 if [[ $(arch) == x86_64 ]]; then
-  HADOLINT_VERSION=1.17.5
+  HADOLINT_VERSION=1.18.0
   HADOLINT_HOME="${SYNTASTIC_HOME}"/hadolint
   mkdir -p "${HADOLINT_HOME}" &&
     curl -fsSL https://github.com/hadolint/hadolint/releases/download/v"${HADOLINT_VERSION}"/hadolint-Linux-x86_64 -o "${HADOLINT_HOME}"/hadolint

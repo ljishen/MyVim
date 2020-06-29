@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-slim-stretch
+FROM openjdk:11-jdk-slim-stretch
 LABEL maintainer="Jianshen Liu <jliu120@ucsc.edu>"
 
 # Build-time metadata as defined at http://label-schema.org
@@ -105,7 +105,7 @@ ARG SYNTASTIC_HOME=/root/.vim/syntastic
 RUN mkdir "${SYNTASTIC_HOME}"
 
 # Install Checkstyle (for Java)
-ARG CHECKSTYLE_VERSION=8.30
+ARG CHECKSTYLE_VERSION=8.33
 ARG CHECKSTYLE_HOME=${SYNTASTIC_HOME}/checkstyle
 ADD https://github.com/checkstyle/checkstyle/releases/download/checkstyle-"${CHECKSTYLE_VERSION}"/checkstyle-"${CHECKSTYLE_VERSION}"-all.jar ${CHECKSTYLE_HOME}/checkstyle-all.jar
 ADD https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml ${CHECKSTYLE_HOME}/
@@ -119,13 +119,13 @@ RUN chmod +x "${CHECKPATCH_HOME}"/checkpatch.pl
 ENV PATH=${CHECKPATCH_HOME}:$PATH
 
 # Install google-java-format
-ARG GOOGLE_JAVA_FORMAT_VERSION=1.7
+ARG GOOGLE_JAVA_FORMAT_VERSION=1.8
 ARG GOOGLE_JAVA_FORMAT_HOME=${SYNTASTIC_HOME}/google-java-format
 ENV GOOGLE_JAVA_FORMAT_JAR=${GOOGLE_JAVA_FORMAT_HOME}/google-java-format-all-deps.jar
 ADD https://github.com/google/google-java-format/releases/download/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}/google-java-format-${GOOGLE_JAVA_FORMAT_VERSION}-all-deps.jar ${GOOGLE_JAVA_FORMAT_JAR}
 
 # Install hadolint (for Dockerfile)
-ARG HADOLINT_VERSION=1.17.5
+ARG HADOLINT_VERSION=1.18.0
 ARG HADOLINT_HOME=${SYNTASTIC_HOME}/hadolint
 ADD https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64 ${HADOLINT_HOME}/hadolint
 RUN chmod +x "${HADOLINT_HOME}"/hadolint
